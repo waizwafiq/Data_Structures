@@ -9,6 +9,13 @@
 * */
 
 public class arrM {
+    public static void main(String[] args) {
+        //TESTING
+        int[] a = {1,2,3,4};
+        int[] b = {5,6,7,8,9};
+        int[] c = {10,11};
+        int[][] d = {a,b,c};
+    }
 
 /* ------------------.add() method------------------
  * Adding element in into array arr at position pos
@@ -175,7 +182,7 @@ public class arrM {
  *      1 = descending
  * .sort(arr, key)
  * */
-
+    /*Sort integers*/
     public static int[] sort(int[] arr, int key){
 
         for(int i=0; i<arr.length; i++){
@@ -203,5 +210,102 @@ public class arrM {
             }
         }
         return arr;
-    }   
+    }
+
+    /*Sort strings*/
+    public static String[] sort(String[] arr, int key){
+
+        for(int i=0; i<arr.length; i++){
+            if(key==0) {
+                boolean isSwapped = false;
+                for(int j=0; j<arr.length-1; j++) {
+                    if (arr[j].compareTo(arr[j + 1]) > 0) {
+                        //SWAP
+                        String temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                        isSwapped = true;
+                    }
+                    if (!isSwapped) break;
+                }
+            }else if(key==1) {  //descending
+                for (int j = 0; j < arr.length-i-1; j++) {
+                    if (arr[j].compareTo(arr[j + 1]) < 0) {
+                        //SWAP
+                        String temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        return arr;
+    }
+
+    /*Sort double*/
+    public static double[] sort(double[] arr, int key){
+
+        for(int i=0; i<arr.length; i++){
+            if(key==0) {
+                boolean isSwapped = false;
+                for(int j=0; j<arr.length-1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        //SWAP
+                        double temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                        isSwapped = true;
+                    }
+                    if (!isSwapped) break;
+                }
+            }else if(key==1) {  //descending
+                for (int j = 0; j < arr.length-i-1; j++) {
+                    if (arr[j] < arr[j + 1]) {
+                        //SWAP
+                        double temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        return arr;
+    }
+
+    /*Sort char*/
+    public static char[] sort(char[] arr, int key){
+
+        for(int i=0; i<arr.length; i++){
+            if(key==0) {
+                boolean isSwapped = false;
+                for(int j=0; j<arr.length-1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        //SWAP
+                        char temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                        isSwapped = true;
+                    }
+                    if (!isSwapped) break;
+                }
+            }else if(key==1) {  //descending
+                for (int j = 0; j < arr.length-i-1; j++) {
+                    if (arr[j] < arr[j + 1]) {
+                        //SWAP
+                        char temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        return arr;
+    }
+
+/* ------------------.merge() method------------------
+ * Merge arrays into one
+ * .merge(arr1, arr2)
+ * */
+    /*Merge integers*/
+
 }
