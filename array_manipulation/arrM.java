@@ -1,3 +1,5 @@
+/*AUTHOR: Waiz Wafiq*/
+
 /*ARRAY MANIPULATION IN JAVA:
 * Methods:
 * .add()
@@ -6,15 +8,7 @@
 * */
 
 public class arrM {
-    public static void main(String[] args) {
-        //TESTING
-        boolean[] test = {true,false,false,true,false};
-        boolean[] newArr = remove(test, false);
-
-        for(boolean i:newArr)
-            System.out.print(i+" ");
-    }
-
+    
 /* ------------------.add() method------------------
  * Adding element in into array arr at position pos
  * .add(arr, in, pos)
