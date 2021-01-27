@@ -1,5 +1,3 @@
-/*AUTHOR: Waiz Wafiq*/
-
 /*ARRAY MANIPULATION IN JAVA:
 * Methods:
 * .add()
@@ -8,7 +6,15 @@
 * */
 
 public class arrM {
-    
+    public static void main(String[] args) {
+        //TESTING
+        int[] test = {4,2,1,8,5,6,10};
+        int[] newArr = sort(test, 1);
+
+        for(int i:newArr)
+            System.out.print(i+" ");
+    }
+
 /* ------------------.add() method------------------
  * Adding element in into array arr at position pos
  * .add(arr, in, pos)
@@ -166,4 +172,41 @@ public class arrM {
 
         return newArr;
     }
+
+/* ------------------.sort() method------------------
+ * Sorting the elements in the array arr
+ * key:
+ *      0 = ascending
+ *      1 = descending
+ * .sort(arr, key)
+ * */
+
+    public static int[] sort(int[] arr, int key){
+
+        for(int i=0; i<arr.length; i++){
+            if(key==0) {
+                boolean isSwapped = false;
+                for(int j=0; j<arr.length-1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        //SWAP
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                        isSwapped = true;
+                    }
+                    if (!isSwapped) break;
+                }
+            }else if(key==1) {  //descending
+                for (int j = 0; j < arr.length-i-1; j++) {
+                    if (arr[j] < arr[j + 1]) {
+                        //SWAP
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        return arr;
+    }   
 }
