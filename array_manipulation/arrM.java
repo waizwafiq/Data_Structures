@@ -1,3 +1,5 @@
+/*AUTHOR: Waiz Wafiq*/
+
 /*ARRAY MANIPULATION IN JAVA:
 * Methods:
 * .add()
@@ -6,14 +8,6 @@
 * */
 
 public class arrM {
-    public static void main(String[] args) {
-        //TESTING
-        int[] test = {4,2,1,8,5,6,10};
-        int[] newArr = sort(test, 1);
-
-        for(int i:newArr)
-            System.out.print(i+" ");
-    }
 
 /* ------------------.add() method------------------
  * Adding element in into array arr at position pos
