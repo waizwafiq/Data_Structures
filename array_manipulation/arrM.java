@@ -5,6 +5,7 @@
 * .add()
 * .remove()
 * .sort()
+* .merge()
 * */
 
 public class arrM {
