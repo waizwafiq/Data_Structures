@@ -32,4 +32,24 @@ public class arrM {
         return out;
     }
 
+
+    public static String[] addStr(String[] arr, String in){
+        String[] out = new String[arr.length+1];
+
+        for(int i=0; i<arr.length; i++) out[i] = arr[i]; //copy arr elements into out
+        out[arr.length] = in;
+
+        return out;
+    }
+
+    public static String[] addStr(String[] arr, String in, int pos){
+        String[] out = new String[arr.length+1];
+
+        for(int i=0; i<pos; i++) out[i] = arr[i];
+        out[pos] = in;
+        for(int i=pos+1; i<out.length; i++) out[i] = arr[i-1];
+
+        return out;
+    }
+
 }
