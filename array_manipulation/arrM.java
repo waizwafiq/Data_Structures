@@ -15,6 +15,9 @@ public class arrM {
         int[] b = {5,6,7,8,9};
         int[] c = {10,11};
         int[][] d = {a,b,c};
+
+        for(int i:merge(d))
+            System.out.print(i+" ");
     }
 
 /* ------------------.add() method------------------
@@ -307,5 +310,72 @@ public class arrM {
  * .merge(arr1, arr2)
  * */
     /*Merge integers*/
+    public static int[] merge(int[][] arr){
+        int temp = 0;
+        int numElems = 0;
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) numElems++;
 
+        int[] newArr = new int[numElems];
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) newArr[temp++] = arr[i][j];
+
+        return newArr;
+    }
+
+    /*Merge String*/
+    public static String[] merge(String[][] arr){
+        int temp = 0;
+        int numElems = 0;
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) numElems++;
+
+        String[] newArr = new String[numElems];
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) newArr[temp++] = arr[i][j];
+
+        return newArr;
+    }
+
+    /*Merge double*/
+    public static double[] merge(double[][] arr){
+        int temp = 0;
+        int numElems = 0;
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) numElems++;
+
+        double[] newArr = new double[numElems];
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) newArr[temp++] = arr[i][j];
+
+        return newArr;
+    }
+
+    /*Merge boolean*/
+    public static boolean[] merge(boolean[][] arr){
+        int temp = 0;
+        int numElems = 0;
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) numElems++;
+
+        boolean[] newArr = new boolean[numElems];
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) newArr[temp++] = arr[i][j];
+
+        return newArr;
+    }
+
+    /*Merge char*/
+    public static char[] merge(char[][] arr){
+        int temp = 0;
+        int numElems = 0;
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) numElems++;
+
+        char[] newArr = new char[numElems];
+        for(int i=0; i<arr.length; i++)
+            for(int j=0; j<arr[i].length; j++) newArr[temp++] = arr[i][j];
+
+        return newArr;
+    }   
 }
