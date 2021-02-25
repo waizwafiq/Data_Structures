@@ -2,8 +2,7 @@ import java.util.EmptyStackException;
 
 public class Stack {
     private Object[] stack;
-    private int size;
-    private int idx = 0;
+    private int size, idx = 0;
 
     public Stack(int size) {
         this.size = size;
