@@ -17,9 +17,9 @@ public class Stack {
         stack[idx++] = data;
     }
 
-    public Object pop(){
+    public void pop(){
         if(isEmpty()) throw new EmptyStackException();
-        return stack[--idx];
+        --idx;
     }
 
     public boolean isFull(){
@@ -33,8 +33,13 @@ public class Stack {
     public int size(){
         return idx;
     }
-    
+
     public Object getData(int idx){
         return stack[idx];
+    }
+
+    public void showStack(){
+        for(int i=idx-1; i>=0; i--)
+            System.out.println(getData(i));
     }
 }
