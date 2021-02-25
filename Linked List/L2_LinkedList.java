@@ -1,4 +1,5 @@
 package List;
+/*This file uses Java library (java utils)*/
 
 /*LinkedList is a sequential list of nodes that hold data which point to other nodes also containing data
 *     4 -> -2 -> 3 -> 1 -> 6
