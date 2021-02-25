@@ -1,5 +1,3 @@
-package Stack;
-
 import java.util.EmptyStackException;
 
 public class Stack {
@@ -34,5 +32,9 @@ public class Stack {
 
     public int size(){
         return idx;
+    }
+    
+    public Object getData(int idx){
+        return stack[idx];
     }
 }
