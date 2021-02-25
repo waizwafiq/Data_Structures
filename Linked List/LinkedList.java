@@ -12,11 +12,11 @@ public class LinkedList {
 
         if (head == null) head = new Node(data); //data is 1st elem for initialization
 
-        Node temp = new Node(data);
+        Node temp = new Node(data); //create a temporary node for the data
         Node current = head;
 
         if (current != null) { //avoiding NullPointer Exception
-            //Starting at head node, traverse to the end, then add data.
+            //Starting at head node, traverse to the end, then add new node.
             while (current.getNext() != null)
                 current = current.getNext();
 
@@ -28,8 +28,23 @@ public class LinkedList {
 
     public void add(Object data, int idx){
         /*Adding data into the linked list with specified index*/
+
+        Node temp = new Node(data); //create a temporary node for the data
+        Node current = head;
+
+        if(current != null) { //avoiding NullPointer Exception
+            //Starting at head node, traverse to the specified index, then add new node.
+            for(int i=0; i<idx && current.getNext()!=null; i++)
+                current = current.getNext();
+        }
+
+        temp.setNext(current.getNext()); //set a reference to the current node's next-node reference
+        current.setNext(temp); //add the new node
+
+        incrementLength();
     }
 
+    /*Length methods*/
     private static int getLength() {
         return length;
     }
