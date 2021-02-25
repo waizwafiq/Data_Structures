@@ -149,5 +149,4 @@ public class LinkedList {
             this.data = data;
         }
     }
-
 }
