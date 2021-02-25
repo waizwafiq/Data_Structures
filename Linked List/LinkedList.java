@@ -44,6 +44,27 @@ public class LinkedList {
         incrementLength();
     }
 
+    public boolean remove(int idx){
+        /*Remove data from the specified index in the linked list
+        * This method returns boolean to determine if the removal is successful or not.*/
+        if(idx < 1 || idx > size()) return false;
+
+        Node current = head;
+        if(head != null){ //if the linked list isn't empty
+            for(int i=0; i<idx; i++){
+                //traverse the linked list until idx-1
+                if(current.getNext() == null) return false;
+
+                current = current.getNext();
+            }
+            current.setNext(current.getNext().getNext());
+
+            decrementLength();
+            return true;
+        }
+        return false;
+    }
+
     public Object get(int idx){
         /*Get data from the specified index in the linked list.*/
 
