@@ -47,7 +47,7 @@ public class LinkedList {
     public boolean remove(int idx){
         /*Remove data from the specified index in the linked list
         * This method returns boolean to determine if the removal is successful or not.*/
-        if(idx < 1 || idx > size()) return false;
+        if(idx < 1 || idx > getLength()) return false;
 
         Node current = head;
         if(head != null){ //if the linked list isn't empty
@@ -97,6 +97,18 @@ public class LinkedList {
         length--;
     }
 
+    public String toString(){
+        String out = "";
+
+        if(head != null){
+            Node current = head.getNext();
+            while(current != null){
+                out += "["+current.getData().toString()+"]";
+                current = current.getNext();
+            }
+        }
+        return out;
+    }
 
     private class Node{
         /*THE NODE CLASS*/
