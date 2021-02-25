@@ -44,6 +44,25 @@ public class LinkedList {
         incrementLength();
     }
 
+    public Object get(int idx){
+        /*Get data from the specified index in the linked list.*/
+
+        if(idx < 0) return null;
+        Node current = null; //initialize current variable
+
+        if(head != null){ //if linked list isn't empty
+            current = head.getNext();
+            for(int i=0; i<idx; i++){
+                //traverse through the linked list until idx-1
+                if(current.getNext() == null) return null;
+
+                current = current.getNext();
+            }
+            return current.getData(); //get data from the current node
+        }
+        return current;
+    }
+
     /*Length methods*/
     private static int getLength() {
         return length;
