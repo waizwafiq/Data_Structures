@@ -18,7 +18,7 @@ public interface DynamicArrayInterface<T> {
      *  true  : Element is found in the dynamic array
      *  false : Element is not found in the dynamic array
      */
-    public boolean search(T key);
+    public boolean contains(T key);
 
     /**Adding an element into the dynamic array
      * 
@@ -52,4 +52,5 @@ public interface DynamicArrayInterface<T> {
      *  false : Element failed to be removed
      */
     public boolean remove(T toRemove);
+
 }
