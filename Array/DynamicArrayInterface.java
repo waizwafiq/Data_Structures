@@ -20,6 +20,13 @@ public interface DynamicArrayInterface<T> {
      */
     public boolean contains(T key);
 
+    /**Get the index of the specified element (The first occurence of the element)
+     * 
+     * @param key : The specified element
+     * @return : The index of the specified element (-1 if not found)
+     */
+    public int getIndexOf(T key);
+
     /**Adding an element into the dynamic array
      * 
      * @param in : The element to be added
@@ -52,5 +59,4 @@ public interface DynamicArrayInterface<T> {
      *  false : Element failed to be removed
      */
     public boolean remove(T toRemove);
-
 }
