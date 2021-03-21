@@ -91,14 +91,20 @@ public class Bag<T> implements BagInterface<T> {
         // alternative: return (!isEmpty() && getIndexOf(item) != -1);
     }
 
-    public T[] toArray() {
-        return bag;
-    }
-
     @Override
     public BagInterface<T> union(BagInterface<T> anotherBag) {
-        // TODO Auto-generated method stub
-        return null;
+        int len = getCurrentSize() + anotherBag.getCurrentSize();
+
+        if (len <= MAX_CAPACITY) {
+            Bag<T> newBag = new Bag<>();
+            for (T item : bag)
+                newBag.add(item);
+            for (T item : anotherBag.toArray())
+                newBag.add(item);
+
+            return newBag;
+        } else
+            throw new ExceptionInInitializerError("Union bag reached maximum capacity.");
     }
 
     @Override
@@ -111,5 +117,9 @@ public class Bag<T> implements BagInterface<T> {
     public BagInterface<T> difference(BagInterface<T> anotherBag) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public T[] toArray() {
+        return bag;
     }
 }
