@@ -20,14 +20,14 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     }
 
     public boolean contains(T key) {
-        for (int i = 0; i < arr.length; i++)
-            if (arr[i].equals(key))
+        for (T elem : arr)
+            if (elem.equals(key))
                 return true;
         return false;
     }
 
     public void add(T in) {
-        T[] temp = (T[]) new Object[arr.length+ 1];
+        T[] temp = (T[]) new Object[arr.length + 1];
 
         for (int i = 0; i < arr.length; i++)
             temp[i] = this.arr[i];
@@ -36,10 +36,10 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     }
 
     public boolean add(T in, int idx) {
-        if (idx >= arr.length+ 1)
+        if (idx >= arr.length + 1)
             return false;
         else {
-            T[] temp = (T[]) new Object[arr.length+ 1];
+            T[] temp = (T[]) new Object[arr.length + 1];
             for (int i = 0; i < idx; i++)
                 temp[i] = arr[i];
             temp[idx] = in;
@@ -55,7 +55,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         if (!isEmpty()) {
             int randIdx = new Random().nextInt(arr.length); // get a random index
 
-            T[] temp = (T[]) new Object[arr.length- 1];
+            T[] temp = (T[]) new Object[arr.length - 1];
 
             for (int i = 0, j = 0; i < arr.length; i++)
                 if (!arr[i].equals(arr[randIdx]))
@@ -69,7 +69,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
 
     public boolean remove(T toRemove) {
         if (!isEmpty() && contains(toRemove)) {
-            T[] temp = (T[]) new Object[arr.length- 1];
+            T[] temp = (T[]) new Object[arr.length - 1];
 
             for (int i = 0, j = 0; i < arr.length; i++)
                 if (!arr[i].equals(toRemove))
