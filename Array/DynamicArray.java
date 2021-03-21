@@ -19,7 +19,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         System.out.println("]");
     }
 
-    public boolean search(T key) {
+    public boolean contains(T key) {
         for (int i = 0; i < arr.length; i++)
             if (arr[i].equals(key))
                 return true;
@@ -68,7 +68,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     }
 
     public boolean remove(T toRemove) {
-        if (!isEmpty() && search(toRemove)) {
+        if (!isEmpty() && contains(toRemove)) {
             T[] temp = (T[]) new Object[arr.length- 1];
 
             for (int i = 0, j = 0; i < arr.length; i++)
@@ -80,4 +80,14 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
             return false;
     }
 
+}
+
+class test {
+    public static void main(String[] args) {
+        DynamicArray<Integer> arr = new DynamicArray<>(new Integer[] { 1, 2, 3, 4, 5 });
+        arr.add(10);
+        arr.display();
+        arr.remove(3);
+        arr.display();
+    }
 }
