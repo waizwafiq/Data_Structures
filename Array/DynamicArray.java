@@ -81,13 +81,3 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     }
 
 }
-
-class test {
-    public static void main(String[] args) {
-        DynamicArray<Integer> arr = new DynamicArray<>(new Integer[] { 1, 2, 3, 4, 5 });
-        arr.add(10);
-        arr.display();
-        arr.remove(3);
-        arr.display();
-    }
-}
