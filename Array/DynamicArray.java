@@ -26,6 +26,16 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         return false;
     }
 
+    public int getIndexOf(T key) {
+        if (!isEmpty() && contains(key)) {
+            for (int i = 0; i < arr.length; i++)
+                if (arr[i].equals(key))
+                    return i;
+            return -1;
+        } else
+            return -1;
+    }
+
     public void add(T in) {
         T[] temp = (T[]) new Object[arr.length + 1];
 
