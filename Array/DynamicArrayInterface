@@ -1,0 +1,45 @@
+/**Author: Waiz Wafiq*/
+
+public interface DynamicArrayInterface<T> {
+
+    /**Check if the dynamic array is empty
+     * 
+     * @return :
+     *  true : dynamic array is empty
+     *  false: dynamic array is not empty
+     */
+    public boolean isEmpty();
+
+    /**Display the elements of the dynamic array */
+    public void display();
+
+    /**Adding an element into the dynamic array
+     * 
+     * @param in : The element to be added
+     */
+    public void add(T in);
+
+    /**Adding an element into the specified index of the dynamic array
+     * 
+     * @param in  : The element to be added
+     * @param idx : The index to add the element
+     */
+    public void add(T in, int idx);
+    
+    /**Remove a random element from the dynamic array
+     * 
+     * @return:
+     *  true  : Element successfully removed
+     *  false : Element failed to be removed
+     */
+    public boolean remove();
+    
+    /**Remove a specified element from the dynamic array
+     * 
+     * @param toRemove : The element to be removed
+     * @return :
+     *  true  : Element successfully removed
+     *  false : Element failed to be removed
+     */
+    public boolean remove(T toRemove);
+}
