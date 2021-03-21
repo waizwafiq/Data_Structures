@@ -71,4 +71,37 @@ public interface BagInterface <T>{
     */
     public T[] toArray();
 
+    /**The union of two bags.
+     * Combines the items inside two bags:
+     * Bag A : {1,2,3,4}
+     * Bag B : {5,6,7}
+     * Bag A union Bag B : {1,2,3,4,5,6,7}
+     * 
+     * @param anotherBag : Another bag.
+     * @return : The class of the united bags.
+     */
+    public BagInterface<T> union(BagInterface<T> anotherBag);
+
+    /**The intersection of two bags.
+     * A new bag that has the common items of those two bags.
+     * Bag A: {1,2,3,4}
+     * Bag B: {2,4,5,6}
+     * Bag A intersection Bag B: {2,4}
+     * 
+     * @param anotherBag : Another bag.
+     * @return : The class of the bag with common items.
+     */
+    public BagInterface<T> intersection(BagInterface<T> anotherBag);
+    
+    /**The difference of two bags.
+     * A new bag that has the differences of those two bags.
+     * Bag A: {1,2,3,4}
+     * Bag B: {3,4,5}
+     * Bag A difference Bag B: {1,2}
+     * 
+     * @param anotherBag : Another bag
+     * @return : The bag class with the differences of the two bags.
+     */
+    public BagInterface<T> difference(BagInterface<T> anotherBag);
+
 }
