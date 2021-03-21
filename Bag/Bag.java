@@ -1,5 +1,3 @@
-package week3.T;
-
 import java.util.Random;
 public class Bag<T> implements BagInterface<T>{
     T[] bag;
