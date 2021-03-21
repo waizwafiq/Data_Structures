@@ -18,7 +18,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         System.out.print("[ ");
         for (T elems : arr)
             System.out.print(elems + " ");
-        System.out.print("]");
+        System.out.println("]");
     }
 
     public boolean search(T key) {
