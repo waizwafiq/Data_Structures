@@ -32,8 +32,11 @@ public interface DynamicArrayInterface<T> {
      * 
      * @param in  : The element to be added
      * @param idx : The index to add the element
+     * @return:
+     *  true  : Element adding successful!
+     *  false : Element adding failed
      */
-    public void add(T in, int idx);
+    public boolean add(T in, int idx);
     
     /**Remove a random element from the dynamic array
      * 
