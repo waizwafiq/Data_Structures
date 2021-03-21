@@ -13,6 +13,15 @@ public interface DynamicArrayInterface<T> {
     /**Display the elements of the dynamic array */
     public void display();
 
+    /**Determine if the specified element is inside the dynamic array
+     * 
+     * @param key : The element to be searched
+     * @return:
+     *  true  : Element is found in the dynamic array
+     *  false : Element is not found in the dynamic array
+     */
+    public boolean search(T key);
+
     /**Adding an element into the dynamic array
      * 
      * @param in : The element to be added
