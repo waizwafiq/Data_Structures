@@ -57,6 +57,15 @@ public class DynamicArray<T>{
         this.length = arr.length;
     }
 
+    public boolean isEmpty(){
+        /**Checks if the dynamic array is empty.
+         * return:
+         *  true  -> dynamic array is empty
+         *  false -> dynamic array is not empty
+         */
+        return arr.length == 0;
+    }
+    
     /* display all elements in the dynamic array */
     public void display(){
         System.out.print("[ ");
