@@ -1,5 +1,3 @@
-/**Author: Waiz Wafiq*/
-
 public interface DynamicArrayInterface<T> {
 
     /**Check if the dynamic array is empty
