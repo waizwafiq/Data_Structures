@@ -91,7 +91,6 @@ public class Bag<T> implements BagInterface<T> {
         // alternative: return (!isEmpty() && getIndexOf(item) != -1);
     }
 
-    @Override
     public BagInterface<T> union(BagInterface<T> anotherBag) {
         int len = getCurrentSize() + anotherBag.getCurrentSize();
 
@@ -107,16 +106,35 @@ public class Bag<T> implements BagInterface<T> {
             throw new ExceptionInInitializerError("Union bag reached maximum capacity.");
     }
 
-    @Override
     public BagInterface<T> intersection(BagInterface<T> anotherBag) {
-        // TODO Auto-generated method stub
-        return null;
+        if (!this.isEmpty() && !anotherBag.isEmpty()) {
+            Bag<T> newBag = new Bag<>();
+            for (T item1 : bag)
+                for (T item2 : anotherBag.toArray())
+                    if (item1.equals(item2))
+                        newBag.add(item1);
+
+            return newBag;
+        } else
+            return null;
     }
 
-    @Override
     public BagInterface<T> difference(BagInterface<T> anotherBag) {
-        // TODO Auto-generated method stub
-        return null;
+        if (!this.isEmpty() && !anotherBag.isEmpty()) {
+            Bag<T> newBag = new Bag<>();
+
+            for (int i = 0; i < getCurrentSize(); i++) 
+                for (int j = 0; j < anotherBag.getCurrentSize(); j++) 
+                    if(bag[i].equals(anotherBag.toArray()[j]))
+                        break;
+                    else if (j == anotherBag.getCurrentSize() - 1) 
+                        newBag.add(bag[i]);
+
+            return newBag;
+        } else if (!this.isEmpty() && anotherBag.isEmpty())
+            return this;
+        else
+            return null;
     }
 
     public T[] toArray() {
