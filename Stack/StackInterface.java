@@ -21,14 +21,32 @@ public interface StackInterface<T> {
      */
     public void pop();
 
-
+    /**Checks if the stack is full.
+     * 
+     * @return true if full
+     */
     public boolean isFull();
 
+    /**Checks if the stack is empty.
+     * 
+     * @return true if empty
+     */
     public boolean isEmpty();
 
+    /**Gets the current size of the stack.
+     * 
+     * @return The size of the stack.
+     */
     public int size();
 
+    /**Gets the data from the stack with a specified index.
+     * 
+     * @param idx The specified index
+     * @return The value of the data from the stack
+     */
     public T getData(int idx);
 
+    /**Displays the data in the stack.
+     */
     public void displayStack();
 }
