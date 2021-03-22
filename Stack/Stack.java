@@ -1,44 +1,45 @@
 import java.util.EmptyStackException;
 
-public class Stack {
-    private Object[] stack;
+public class Stack<T> implements StackInterface<T> {
+    private T[] stack;
     private int size, idx = 0;
 
     public Stack(int size) {
         this.size = size;
-        stack = new Object[size];
+        stack = (T[]) new Object[size];
     }
 
-    public void push(Object data){
-        if(isFull())
+    public void push(T data) {
+        if (isFull())
             throw new StackOverflowError("Stack is full!");
 
         stack[idx++] = data;
     }
 
-    public void pop(){
-        if(isEmpty()) throw new EmptyStackException();
+    public void pop() {
+        if (isEmpty())
+            throw new EmptyStackException();
         --idx;
     }
 
-    public boolean isFull(){
+    public boolean isFull() {
         return idx == size;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return idx == 0;
     }
 
-    public int size(){
+    public int size() {
         return idx;
     }
 
-    public Object getData(int idx){
+    public T getData(int idx) {
         return stack[idx];
     }
 
-    public void showStack(){
-        for(int i=idx-1; i>=0; i--)
+    public void displayStack() {
+        for (int i = idx - 1; i >= 0; i--)
             System.out.println(getData(i));
     }
 }
