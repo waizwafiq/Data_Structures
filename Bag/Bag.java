@@ -2,34 +2,42 @@ import java.util.Random;
 
 public class Bag<T> implements BagInterface<T> {
     private T[] bag;
-    private static final int MAX_CAPACITY = 1000;
+    private final int DEFAULT_CAPACITY = 25;
+    private int numberOfEntries;
 
     public Bag() {
         bag = (T[]) new Object[0];
+        numberOfEntries = 0;
     }
 
     public Bag(T[] bag) {
-        if (bag.length <= MAX_CAPACITY)
+        if (bag.length <= DEFAULT_CAPACITY) {
             this.bag = bag;
-        else
+            numberOfEntries = bag.length;
+        }else
             throw new ExceptionInInitializerError("The bag reached its maximum capacity.");
     }
 
     public int getCurrentSize() {
-        return bag.length;
+        return numberOfEntries;
+    }
+
+    public boolean isFull() {
+        return numberOfEntries == DEFAULT_CAPACITY;
     }
 
     public boolean isEmpty() {
-        return bag.length == 0;
+        return numberOfEntries == 0;
     }
 
     public boolean add(T newItem) {
-        if (bag.length <= MAX_CAPACITY) {
+        if (bag.length <= DEFAULT_CAPACITY) {
             T[] temp = (T[]) new Object[getCurrentSize() + 1];
             for (int i = 0; i < getCurrentSize(); i++)
                 temp[i] = bag[i];
             temp[getCurrentSize()] = newItem;
             bag = temp;
+            numberOfEntries = temp.length;
             return true;
         } else
             return false;
@@ -46,6 +54,7 @@ public class Bag<T> implements BagInterface<T> {
                     temp[j++] = bag[i];
 
             bag = temp;
+            numberOfEntries = temp.length;
             return toRemove;
         } else
             return null;
@@ -59,6 +68,7 @@ public class Bag<T> implements BagInterface<T> {
                     temp[j++] = bag[i];
 
             bag = temp;
+            numberOfEntries = temp.length;
             return true;
         } else
             return false;
@@ -66,6 +76,7 @@ public class Bag<T> implements BagInterface<T> {
 
     public void clear() {
         bag = (T[]) new Object[0];
+        numberOfEntries = 0;
     }
 
     public int getFrequencyOf(T item) {
@@ -91,10 +102,15 @@ public class Bag<T> implements BagInterface<T> {
         // alternative: return (!isEmpty() && getIndexOf(item) != -1);
     }
 
+    public T[] toArray() {
+        return bag;
+    }
+
+    @Override
     public BagInterface<T> union(BagInterface<T> anotherBag) {
         int len = getCurrentSize() + anotherBag.getCurrentSize();
 
-        if (len <= MAX_CAPACITY) {
+        if (len <= DEFAULT_CAPACITY) {
             Bag<T> newBag = new Bag<>();
             for (T item : bag)
                 newBag.add(item);
@@ -106,6 +122,7 @@ public class Bag<T> implements BagInterface<T> {
             throw new ExceptionInInitializerError("Union bag reached maximum capacity.");
     }
 
+    @Override
     public BagInterface<T> intersection(BagInterface<T> anotherBag) {
         if (!this.isEmpty() && !anotherBag.isEmpty()) {
             Bag<T> newBag = new Bag<>();
@@ -119,15 +136,16 @@ public class Bag<T> implements BagInterface<T> {
             return null;
     }
 
+    @Override
     public BagInterface<T> difference(BagInterface<T> anotherBag) {
         if (!this.isEmpty() && !anotherBag.isEmpty()) {
             Bag<T> newBag = new Bag<>();
 
-            for (int i = 0; i < getCurrentSize(); i++) 
-                for (int j = 0; j < anotherBag.getCurrentSize(); j++) 
+            for (int i = 0; i < getCurrentSize(); i++)
+                for (int j = 0; j < anotherBag.getCurrentSize(); j++)
                     if(bag[i].equals(anotherBag.toArray()[j]))
                         break;
-                    else if (j == anotherBag.getCurrentSize() - 1) 
+                    else if (j == anotherBag.getCurrentSize() - 1)
                         newBag.add(bag[i]);
 
             return newBag;
@@ -135,9 +153,5 @@ public class Bag<T> implements BagInterface<T> {
             return this;
         else
             return null;
-    }
-
-    public T[] toArray() {
-        return bag;
     }
 }
