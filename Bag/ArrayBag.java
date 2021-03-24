@@ -177,14 +177,18 @@ public class ArrayBag<T> implements BagInterface<T> {
         if (!this.isEmpty() && !anotherBag.isEmpty()) {
             ArrayBag<T> newBag = new ArrayBag<>();
 
-            for (int i = 0; i < getCurrentSize(); i++)
-                for (int j = 0; j < anotherBag.getCurrentSize(); j++)
-                    if (bag[i].equals(anotherBag.toArray()[j]))
-                        break;
-                    else if (j == anotherBag.getCurrentSize() - 1)
-                        newBag.add(bag[i]);
+            BagInterface<T> temp1 = new ArrayBag<>(this);
+            BagInterface<T> temp2 = new ArrayBag<>(anotherBag);
 
-            return newBag;
+            for(T item1: temp1.toArray())
+                for(T item2: temp2.toArray()) {
+                    if (item1.equals(item2)) {
+                        temp1.remove(item1);
+                        temp2.remove(item2);
+                        break;
+                    }
+                }
+            return temp1;
         } else if (!this.isEmpty() && anotherBag.isEmpty())
             return this;
         else
