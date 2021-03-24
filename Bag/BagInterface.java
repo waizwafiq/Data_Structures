@@ -1,13 +1,13 @@
 /**This is the interface for the Bag Data Structure.
-  *<p>Imagine there's a bag (the structure), we can put anything inside the bag, which we call as the items (data). 
-  *The order of the items is insignificant and it is possible to have more than one similar item. 
-  *Therefore, the structure is not a set. However, I assumed that the bag is in a form of array. 
-  *<p>Reference: https://algs4.cs.princeton.edu/13stacks/
-  
-  <p>NOTE: I may make some corrections for this source code.
+ *<p>Imagine there's a bag (the structure), we can put anything inside the bag, which we call as the items (data).
+ *The order of the items is insignificant and it is possible to have more than one similar item.
+ *Therefore, the structure is not a set. However, I assumed that the bag is in a form of array.
+ *<p>Reference: https://algs4.cs.princeton.edu/13stacks/
 
-  @author Waiz Wafiq
-*/
+ <p>NOTE: I may make some corrections for this source code.
+
+ @author Waiz Wafiq
+ */
 
 public interface BagInterface <T>{
 
