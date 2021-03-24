@@ -1,16 +1,16 @@
 import java.util.Random;
 
-public class Bag<T> implements BagInterface<T> {
+public class ArrayBag<T> implements BagInterface<T> {
     private T[] bag;
     private final int DEFAULT_CAPACITY = 25;
     private int numberOfEntries;
 
-    public Bag() {
+    public ArrayBag() {
         bag = (T[]) new Object[0];
         numberOfEntries = 0;
     }
 
-    public Bag(T[] bag) {
+    public ArrayBag(T[] bag) {
         if (bag.length <= DEFAULT_CAPACITY) {
             this.bag = bag;
             numberOfEntries = bag.length;
@@ -111,7 +111,7 @@ public class Bag<T> implements BagInterface<T> {
         int len = getCurrentSize() + anotherBag.getCurrentSize();
 
         if (len <= DEFAULT_CAPACITY) {
-            Bag<T> newBag = new Bag<>();
+            ArrayBag<T> newBag = new ArrayBag<>();
             for (T item : bag)
                 newBag.add(item);
             for (T item : anotherBag.toArray())
@@ -125,7 +125,7 @@ public class Bag<T> implements BagInterface<T> {
     @Override
     public BagInterface<T> intersection(BagInterface<T> anotherBag) {
         if (!this.isEmpty() && !anotherBag.isEmpty()) {
-            Bag<T> newBag = new Bag<>();
+            ArrayBag<T> newBag = new ArrayBag<>();
             for (T item1 : bag)
                 for (T item2 : anotherBag.toArray())
                     if (item1.equals(item2))
@@ -139,7 +139,7 @@ public class Bag<T> implements BagInterface<T> {
     @Override
     public BagInterface<T> difference(BagInterface<T> anotherBag) {
         if (!this.isEmpty() && !anotherBag.isEmpty()) {
-            Bag<T> newBag = new Bag<>();
+            ArrayBag<T> newBag = new ArrayBag<>();
 
             for (int i = 0; i < getCurrentSize(); i++)
                 for (int j = 0; j < anotherBag.getCurrentSize(); j++)
