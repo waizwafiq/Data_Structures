@@ -1,62 +1,124 @@
+/**
+ * This is the interface for the dynamic array.
+ * <p>
+ * <p>
+ * Reference: 
+ * 
+ * <p>
+ * NOTE: I may make some corrections for this source code.
+ * 
+ * @author Waiz Wafiq
+ */
+
 public interface DynamicArrayInterface<T> {
 
-    /**Check if the dynamic array is empty
+    /**
+     * Get the number of items in the dynamic array.
      * 
-     * @return :
-     *  true : dynamic array is empty
-     *  false: dynamic array is not empty
+     * @return: The size of the dynamic array.
+     */
+    public int getCurrentSize();
+  
+    /**
+     * Check if the dynamic array is empty.
+     *
+     * @return true : The dynamic array is empty
      */
     public boolean isEmpty();
+  
+    /**
+     * Add an item into the dynamic array.
+     *
+     * @param newItem : the item to be added into the dynamic array
+     * @return true : Adding successful
+     */
+    public boolean add(T newItem);
 
-    /**Display the elements of the dynamic array */
-    public void display();
+    /**
+     * Add an item into the dynamic array, given a specified index.
+     * @return true if successful
+     */
+    public boolean add(T newItem, int idx);
+  
+    /**
+     * Remove a random item from the dynamic array
+     *
+     * @return: The item removed from the dynamic array
+     */
+    public T remove();
+  
+    /**
+     * Removes a specified item from the dynamic array
+     *
+     * @param item : the item to be removed from the dynamic array
+     * @return: true: item removal successful
+     */
+    public boolean remove(T item);
+  
+    /** Removes all of the items from the dynamic array */
+    public void clear();
+  
+    /**
+     * Get the number of occurrences of the item in the dynamic array
+     *
+     * @param item : The specified item in the dynamic array
+     * @return The number of occurences of the item in the dynamic array
+     */
+    public int getFrequencyOf(T item);
 
-    /**Determine if the specified element is inside the dynamic array
-     * 
-     * @param key : The element to be searched
-     * @return:
-     *  true  : Element is found in the dynamic array
-     *  false : Element is not found in the dynamic array
+    /**
+     * Get the number of index of the specified element. (-1 if not found)
+     * @param item The specified element
+     * @return The index number
      */
-    public boolean contains(T key);
-
-    /**Get the index of the specified element (The first occurence of the element)
-     * 
-     * @param key : The specified element
-     * @return : The index of the specified element (-1 if not found)
+    public int getIndexOf(T item);
+  
+    /**
+     * Determine if the specified item is in the dynamic array.
+     *
+     * @param item : The specified item
+     * @return true : The specified item is in the dynamic array
      */
-    public int getIndexOf(T key);
-
-    /**Adding an element into the dynamic array
-     * 
-     * @param in : The element to be added
+    public boolean contains(T item);
+  
+    /**
+     * Retrieves all of the items in the form of array
+     *
+     * @return The array of the items in the dynamic array
      */
-    public void add(T in);
-
-    /**Adding an element into the specified index of the dynamic array
-     * 
-     * @param in  : The element to be added
-     * @param idx : The index to add the element
-     * @return:
-     *  true  : Element adding successful!
-     *  false : Element adding failed
+    public T[] toArray();
+  
+    /**
+     * The union of two arrays. Combines the elements inside two arrayss:
+     * Array A : {1,2,3,4}
+     * Array B : {5,6,7} 
+     * union : {1,2,3,4,5,6,7}
+     *
+     * @param anotherArray Another dynamic array.
+     * @return The class of the united arrays.
      */
-    public boolean add(T in, int idx);
-    
-    /**Remove a random element from the dynamic array
-     * 
-     * @return:
-     *  true  : Element successfully removed
-     *  false : Element failed to be removed
+    public DynamicArrayInterface<T> union(DynamicArrayInterface<T> anotherArray);
+  
+    /**
+     * The intersection of two arrays. 
+     * A new dynamic array that has the common elements of those two arrays. 
+     * Array A: {1,2,3,4} Array B: {2,4,5,6} 
+     * Array A intersection Array B: {2,4}
+     *
+     * @param anotherArray Another dynamic array.
+     * @return The class of the dynamic array with common elements.
      */
-    public boolean remove();
-    
-    /**Remove a specified element from the dynamic array
-     * 
-     * @param toRemove : The element to be removed
-     * @return :
-     *  true  : Element successfully removed
-     *  false : Element failed to be removed
+    public DynamicArrayInterface<T> intersection(DynamicArrayInterface<T> anotherArray);
+  
+    /**
+     * The difference of two arrays. 
+     * A new dynamic array that has the differences of those two arrays. 
+     * Array A: {1,2,3,4} Array B: {3,4,5} 
+     * Array A difference Array B: {1,2}
+     *
+     * @param anotherArray Another dynamic array
+     * @return The dynamic array class with the differences of the two arrays.
      */
-    public boolean remove(T toRemove);
-}
+    public DynamicArrayInterface<T> difference(DynamicArrayInterface<T> anotherArray);
+  
+  }
