@@ -175,8 +175,6 @@ public class ArrayBag<T> implements BagInterface<T> {
     @Override
     public BagInterface<T> difference(BagInterface<T> anotherBag) {
         if (!this.isEmpty() && !anotherBag.isEmpty()) {
-            ArrayBag<T> newBag = new ArrayBag<>();
-
             BagInterface<T> temp1 = new ArrayBag<>(this);
             BagInterface<T> temp2 = new ArrayBag<>(anotherBag);
 
