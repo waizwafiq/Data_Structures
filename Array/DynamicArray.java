@@ -158,7 +158,6 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         if (!this.isEmpty() && !anotherArray.isEmpty()) {
             DynamicArrayInterface<T> temp1 = new DynamicArray<>(this);
             DynamicArrayInterface<T> temp2 = new DynamicArray<>(anotherArray);
-
             DynamicArray<T> newArr = new DynamicArray<>();
 
             for (T item1 : temp1.toArray())
@@ -177,8 +176,22 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
 
     @Override
     public DynamicArrayInterface<T> difference(DynamicArrayInterface<T> anotherArray) {
-        // TODO Auto-generated method stub
-        return null;
+        if (!this.isEmpty() && !anotherArray.isEmpty()) {
+            DynamicArrayInterface<T> temp1 = new DynamicArray<>(this);
+            DynamicArrayInterface<T> temp2 = new DynamicArray<>(anotherArray);
+            for(T item1: temp1.toArray())
+                for(T item2: temp2.toArray()) {
+                    if (item1.equals(item2)) {
+                        temp1.remove(item1);
+                        temp2.remove(item2);
+                        break;
+                    }
+                }
+            return temp1;
+        } else if (!this.isEmpty() && anotherArray.isEmpty())
+            return this;
+        else
+            return null;
     }
 
 }
