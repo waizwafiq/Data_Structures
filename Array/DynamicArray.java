@@ -16,13 +16,13 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     }
 
     //COPY METHOD 1
-    public DynamicArray(ArrayBag<T> anotherArray){
+    public DynamicArray(DynamicArray<T> anotherArray){
         this.arr = anotherArray.toArray();
         this.len = arr.length;
     }
 
     //COPY METHOD 2
-    public DynamicArray(BagInterface<T> anotherArray){
+    public DynamicArray(DynamicArrayInterface<T> anotherArray){
         this.arr = anotherArray.toArray();
         this.len = arr.length;    
     }
@@ -111,38 +111,68 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
 
     @Override
     public int getFrequencyOf(T item) {
-        // TODO Auto-generated method stub
-        return 0;
+        if (!isEmpty() && contains(item)) {
+            int count = 0;
+            for (T items : arr)
+                if (items.equals(item))
+                    count++;
+
+            return count;
+        } else
+            return 0;
     }
 
     @Override
     public int getIndexOf(T item) {
-        // TODO Auto-generated method stub
-        return 0;
+        if (!isEmpty() && contains(item)) 
+            for (int i = 0; i < getCurrentSize(); i++)
+                if (arr[i].equals(item))
+                    return i;
+        
+        return -1;
     }
 
     @Override
     public boolean contains(T item) {
-        // TODO Auto-generated method stub
-        return false;
+        return (!isEmpty() && getIndexOf(item) != -1);
     }
 
     @Override
     public T[] toArray() {
-        // TODO Auto-generated method stub
-        return null;
+        return arr;
     }
 
     @Override
     public DynamicArrayInterface<T> union(DynamicArrayInterface<T> anotherArray) {
-        // TODO Auto-generated method stub
-        return null;
+        DynamicArray<T> newArr = new DynamicArray<>();
+        for (T item : arr)
+            newArr.add(item);
+        for (T item : anotherArray.toArray())
+            newArr.add(item);
+
+        return newArr;
     }
 
     @Override
     public DynamicArrayInterface<T> intersection(DynamicArrayInterface<T> anotherArray) {
-        // TODO Auto-generated method stub
-        return null;
+        if (!this.isEmpty() && !anotherArray.isEmpty()) {
+            DynamicArrayInterface<T> temp1 = new DynamicArray<>(this);
+            DynamicArrayInterface<T> temp2 = new DynamicArray<>(anotherArray);
+
+            DynamicArray<T> newArr = new DynamicArray<>();
+
+            for (T item1 : temp1.toArray())
+                for (T item2 : temp2.toArray()) {
+                    if (item1.equals(item2)) {
+                        temp1.remove(item1);
+                        temp2.remove(item2);
+                        newArr.add(item1);
+                        break;
+                    }
+                }
+            return newArr;
+        } else
+            return null;
     }
 
     @Override
