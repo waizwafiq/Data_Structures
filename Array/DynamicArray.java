@@ -5,26 +5,26 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     private T[] arr;
     private int len;
 
-    public DynamicArray(){
+    public DynamicArray() {
         this.arr = (T[]) new Object[0];
         len = 0;
     }
 
-    public DynamicArray(T[] arr){
+    public DynamicArray(T[] arr) {
         this.arr = arr;
         len = arr.length;
     }
 
-    //COPY METHOD 1
-    public DynamicArray(DynamicArray<T> anotherArray){
+    // COPY METHOD 1
+    public DynamicArray(DynamicArray<T> anotherArray) {
         this.arr = anotherArray.toArray();
         this.len = arr.length;
     }
 
-    //COPY METHOD 2
-    public DynamicArray(DynamicArrayInterface<T> anotherArray){
+    // COPY METHOD 2
+    public DynamicArray(DynamicArrayInterface<T> anotherArray) {
         this.arr = anotherArray.toArray();
-        this.len = arr.length;    
+        this.len = arr.length;
     }
 
     @Override
@@ -45,6 +45,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
             temp[i] = this.arr[i];
         temp[getCurrentSize()] = newItem;
         this.arr = temp;
+        this.len++;
         return true;
     }
 
@@ -61,6 +62,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
                 temp[i] = arr[i];
 
             this.arr = temp;
+            this.len++;
             return true;
         }
     }
@@ -93,10 +95,10 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
                 if (!arr[i].equals(toRemove) || removed)
                     temp[j++] = arr[i];
                 else if (arr[i].equals(toRemove))
-                    removed = true; //to avoid multiple removal
+                    removed = true; // to avoid multiple removal
 
             this.arr = temp;
-            this.len = temp.length;
+            this.len--;
             return true;
 
         } else
@@ -124,17 +126,22 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
 
     @Override
     public int getIndexOf(T item) {
-        if (!isEmpty() && contains(item)) 
+        if (!isEmpty() && contains(item))
             for (int i = 0; i < getCurrentSize(); i++)
                 if (arr[i].equals(item))
                     return i;
-        
+
         return -1;
     }
 
     @Override
     public boolean contains(T item) {
-        return (!isEmpty() && getIndexOf(item) != -1);
+        if (!isEmpty()) {
+            for (T items : arr)
+                if (items.equals(item))
+                    return true;
+        }
+        return false; // if not found
     }
 
     @Override
@@ -144,9 +151,10 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
 
     @Override
     public DynamicArrayInterface<T> union(DynamicArrayInterface<T> anotherArray) {
-        DynamicArray<T> newArr = new DynamicArray<>();
-        for (T item : arr)
+        DynamicArrayInterface<T> newArr = new DynamicArray<>();
+        for (T item : arr){
             newArr.add(item);
+        }
         for (T item : anotherArray.toArray())
             newArr.add(item);
 
@@ -158,6 +166,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         if (!this.isEmpty() && !anotherArray.isEmpty()) {
             DynamicArrayInterface<T> temp1 = new DynamicArray<>(this);
             DynamicArrayInterface<T> temp2 = new DynamicArray<>(anotherArray);
+
             DynamicArray<T> newArr = new DynamicArray<>();
 
             for (T item1 : temp1.toArray())
@@ -179,8 +188,8 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         if (!this.isEmpty() && !anotherArray.isEmpty()) {
             DynamicArrayInterface<T> temp1 = new DynamicArray<>(this);
             DynamicArrayInterface<T> temp2 = new DynamicArray<>(anotherArray);
-            for(T item1: temp1.toArray())
-                for(T item2: temp2.toArray()) {
+            for (T item1 : temp1.toArray())
+                for (T item2 : temp2.toArray()) {
                     if (item1.equals(item2)) {
                         temp1.remove(item1);
                         temp2.remove(item2);
@@ -194,4 +203,14 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
             return null;
     }
 
+    public void display() {
+        System.out.println("test"+getCurrentSize());
+        if (getCurrentSize() != 0) {
+            System.out.print("[");
+            for (int i = 0; i < getCurrentSize() - 1; i++)
+                System.out.print(arr[i] + ", ");
+            System.out.println(arr[len - 1] + "]");
+        }else
+            System.out.println("[ ]");
+    }
 }
