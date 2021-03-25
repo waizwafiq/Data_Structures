@@ -8,3 +8,5 @@ So far, the data structures that I have implemented are:
   * Linked List
 
 <p> I'm planning to implement more data structures (and maybe some useful algorithms)
+- Feel free to make a pull request if you can come up with a better/optimized solution.
+- If there are issues/bugs, feel free to state it in the "Issues" section
