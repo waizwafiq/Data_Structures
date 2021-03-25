@@ -152,7 +152,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     @Override
     public DynamicArrayInterface<T> union(DynamicArrayInterface<T> anotherArray) {
         DynamicArrayInterface<T> newArr = new DynamicArray<>();
-        for (T item : arr){
+        for (T item : arr) {
             newArr.add(item);
         }
         for (T item : anotherArray.toArray())
@@ -204,13 +204,13 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     }
 
     public void display() {
-        System.out.println("test"+getCurrentSize());
+        System.out.println("test" + getCurrentSize());
         if (getCurrentSize() != 0) {
             System.out.print("[");
             for (int i = 0; i < getCurrentSize() - 1; i++)
                 System.out.print(arr[i] + ", ");
             System.out.println(arr[len - 1] + "]");
-        }else
+        } else
             System.out.println("[ ]");
     }
 }
