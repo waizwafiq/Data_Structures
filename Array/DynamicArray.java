@@ -3,57 +3,61 @@ import java.util.Random;
 public class DynamicArray<T> implements DynamicArrayInterface<T> {
 
     private T[] arr;
+    private int len;
 
-    public DynamicArray(T[] arr) {
+    public DynamicArray(){
+        this.arr = (T[]) new Object[0];
+        len = 0;
+    }
+
+    public DynamicArray(T[] arr){
         this.arr = arr;
+        len = arr.length;
     }
 
+    //COPY METHOD 1
+    public DynamicArray(ArrayBag<T> anotherArray){
+        this.arr = anotherArray.toArray();
+        this.len = arr.length;
+    }
+
+    //COPY METHOD 2
+    public DynamicArray(BagInterface<T> anotherArray){
+        this.arr = anotherArray.toArray();
+        this.len = arr.length;    
+    }
+
+    @Override
+    public int getCurrentSize() {
+        return len;
+    }
+
+    @Override
     public boolean isEmpty() {
-        return arr.length == 0;
+        return len == 0;
     }
 
-    public void display() {
-        System.out.print("[ ");
-        for (T elems : arr)
-            System.out.print(elems + " ");
-        System.out.println("]");
-    }
+    @Override
+    public boolean add(T newItem) {
+        T[] temp = (T[]) new Object[getCurrentSize() + 1];
 
-    public boolean contains(T key) {
-        for (T elem : arr)
-            if (elem.equals(key))
-                return true;
-        return false;
-    }
-
-    public int getIndexOf(T key) {
-        if (!isEmpty() && contains(key)) {
-            for (int i = 0; i < arr.length; i++)
-                if (arr[i].equals(key))
-                    return i;
-            return -1;
-        } else
-            return -1;
-    }
-
-    public void add(T in) {
-        T[] temp = (T[]) new Object[arr.length + 1];
-
-        for (int i = 0; i < arr.length; i++)
+        for (int i = 0; i < getCurrentSize(); i++)
             temp[i] = this.arr[i];
-        temp[arr.length] = in;
+        temp[getCurrentSize()] = newItem;
         this.arr = temp;
+        return true;
     }
 
-    public boolean add(T in, int idx) {
-        if (idx >= arr.length + 1)
+    @Override
+    public boolean add(T newItem, int idx) {
+        if (idx >= getCurrentSize() + 1)
             return false;
         else {
-            T[] temp = (T[]) new Object[arr.length + 1];
+            T[] temp = (T[]) new Object[getCurrentSize() + 1];
             for (int i = 0; i < idx; i++)
                 temp[i] = arr[i];
-            temp[idx] = in;
-            for (int i = idx + 1; i < arr.length; i++)
+            temp[idx] = newItem;
+            for (int i = idx + 1; i < getCurrentSize(); i++)
                 temp[i] = arr[i];
 
             this.arr = temp;
@@ -61,33 +65,90 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         }
     }
 
-    public boolean remove() {
+    @Override
+    public T remove() {
         if (!isEmpty()) {
-            int randIdx = new Random().nextInt(arr.length); // get a random index
+            T toRemove = arr[new Random().nextInt(getCurrentSize())];
 
-            T[] temp = (T[]) new Object[arr.length - 1];
-
-            for (int i = 0, j = 0; i < arr.length; i++)
-                if (!arr[i].equals(arr[randIdx]))
+            T[] temp = (T[]) new Object[getCurrentSize() - 1];
+            for (int i = 0, j = 0; i < getCurrentSize(); i++)
+                if (arr[i] != toRemove)
                     temp[j++] = arr[i];
 
             this.arr = temp;
+            this.len = temp.length;
+            return toRemove;
+        } else
+            return null;
+    }
+
+    @Override
+    public boolean remove(T toRemove) {
+        if (!isEmpty() && contains(toRemove)) {
+
+            boolean removed = false;
+            T[] temp = (T[]) new Object[getCurrentSize() - 1];
+
+            for (int i = 0, j = 0; i < getCurrentSize(); i++)
+                if (!arr[i].equals(toRemove) || removed)
+                    temp[j++] = arr[i];
+                else if (arr[i].equals(toRemove))
+                    removed = true; //to avoid multiple removal
+
+            this.arr = temp;
+            this.len = temp.length;
             return true;
+
         } else
             return false;
     }
 
-    public boolean remove(T toRemove) {
-        if (!isEmpty() && contains(toRemove)) {
-            T[] temp = (T[]) new Object[arr.length - 1];
+    @Override
+    public void clear() {
+        arr = (T[]) new Object[0];
+        len = 0;
+    }
 
-            for (int i = 0, j = 0; i < arr.length; i++)
-                if (!arr[i].equals(toRemove))
-                    temp[j++] = arr[i];
-            this.arr = temp;
-            return true;
-        } else
-            return false;
+    @Override
+    public int getFrequencyOf(T item) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int getIndexOf(T item) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean contains(T item) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public T[] toArray() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public DynamicArrayInterface<T> union(DynamicArrayInterface<T> anotherArray) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public DynamicArrayInterface<T> intersection(DynamicArrayInterface<T> anotherArray) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public DynamicArrayInterface<T> difference(DynamicArrayInterface<T> anotherArray) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
