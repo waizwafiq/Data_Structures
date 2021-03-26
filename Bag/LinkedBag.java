@@ -1,23 +1,25 @@
 /**
- *  The {@code LinkedBag} class represents a bag (or multiset) of 
- *  generic items. It supports insertion and iterating over the 
- *  items in arbitrary order.
+ * The {@code LinkedBag} class represents a bag (or multiset) of generic items.
+ * It supports insertion and iterating over the items in arbitrary order.
  *
- *  @author Waiz Wafiq
+ * @author Waiz Wafiq
  */
 
 public final class LinkedBag<T> implements BagInterface<T> {
 
-    private class Node{
-        Node next;
-        Object data;
+    /**
+     * The Node class (a private inner class)
+     */
+    private class Node {
+        Node next; // reference to the next node
+        T data; // data carried by this node
 
-        public Node(Object data) {
+        public Node(T data) {
             next = null;
             this.data = data;
         }
 
-        public Node(Node next, Object data) {
+        public Node(Node next, T data) {
             this.next = next;
             this.data = data;
         }
@@ -30,20 +32,20 @@ public final class LinkedBag<T> implements BagInterface<T> {
             this.next = next;
         }
 
-        public Object getData() {
+        public T getData() {
             return data;
         }
 
-        public void setData(Object data) {
+        public void setData(T data) {
             this.data = data;
         }
-        
+
     }
 
     private Node firstNode;
     private int numberOfEntries;
 
-    public LinkedBag(){
+    public LinkedBag() {
         firstNode = null;
         numberOfEntries = 0;
     }
@@ -56,7 +58,7 @@ public final class LinkedBag<T> implements BagInterface<T> {
 
     @Override
     public boolean isFull() {
-        // TODO Auto-generated method stub
+        // Never full.
         return false;
     }
 
@@ -68,8 +70,22 @@ public final class LinkedBag<T> implements BagInterface<T> {
 
     @Override
     public boolean add(T newItem) {
-        // TODO Auto-generated method stub
-        return false;
+
+        if (firstNode == null) //if the first node is empty
+            firstNode = new Node(newItem);
+
+        Node temp = new Node(newItem);
+        Node current = firstNode;
+
+        if(current != null) {
+            //traverse until it reaches an empty node
+            while(current.getNext() != null) 
+                current = current.getNext();
+            
+            current.setNext(temp);
+        }
+        numberOfEntries++;
+        return true;
     }
 
     @Override
@@ -87,7 +103,7 @@ public final class LinkedBag<T> implements BagInterface<T> {
     @Override
     public void clear() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -125,5 +141,5 @@ public final class LinkedBag<T> implements BagInterface<T> {
         // TODO Auto-generated method stub
         return null;
     }
-    
+
 }
