@@ -52,8 +52,7 @@ public final class LinkedBag<T> implements BagInterface<T> {
 
     @Override
     public int getCurrentSize() {
-        // TODO Auto-generated method stub
-        return 0;
+        return numberOfEntries;
     }
 
     @Override
@@ -64,8 +63,7 @@ public final class LinkedBag<T> implements BagInterface<T> {
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return firstNode == null;
     }
 
     @Override
@@ -97,6 +95,10 @@ public final class LinkedBag<T> implements BagInterface<T> {
     @Override
     public boolean remove(T item) {
         // TODO Auto-generated method stub
+        /* While going through the nodes starting from the head:
+         *      Get the data held by the node.
+         *      If the data = the item to be removed, find a way to remove the node
+         */
         return false;
     }
 
@@ -109,12 +111,23 @@ public final class LinkedBag<T> implements BagInterface<T> {
     @Override
     public int getFrequencyOf(T item) {
         // TODO Auto-generated method stub
+        /*  Initialize count = 0
+            While going through the nodes starting from the head
+                Get the data held by the node
+                if the data = the item, increase count
+            return count
+        */ 
         return 0;
     }
 
     @Override
     public boolean contains(T item) {
         // TODO Auto-generated method stub
+        /* While going through the nodes starting from the head
+                Get the data held by the node
+                if the data = the item, return true
+            return false (not found)
+        */ 
         return false;
     }
 
@@ -141,5 +154,4 @@ public final class LinkedBag<T> implements BagInterface<T> {
         // TODO Auto-generated method stub
         return null;
     }
-
 }
