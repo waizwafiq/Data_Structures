@@ -1,6 +1,12 @@
+/**
+ * The implementation of a fixed-size Bag (Array Bag).
+ * 
+ * @author Waiz Wafiq
+ */
+
 import java.util.Random;
 
-public class ArrayBag<T> implements BagInterface<T> {
+public final class ArrayBag<T> implements BagInterface<T> {
     private T[] bag;
     private final int DEFAULT_CAPACITY = 25;
     private int numberOfEntries;
