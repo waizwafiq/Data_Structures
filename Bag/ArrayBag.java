@@ -1,7 +1,8 @@
 /**
- * The implementation of a fixed-size Bag (Array Bag).
- * 
- * @author Waiz Wafiq
+ *  The {@code ArrayBag} class represents a bag (or multiset) of 
+ *  generic items. Since the bag uses the Array concept, the size is fixed.
+ *
+ *  @author Waiz Wafiq
  */
 
 import java.util.Random;
