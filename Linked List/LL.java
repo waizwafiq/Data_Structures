@@ -24,11 +24,11 @@ public class LL<E> {
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
 
-        if (head == null) //if the head is empty (list is empty)
+        if (head == null) // if the head is empty (list is empty)
             head = tail = newNode; // the head is the tail and is the new node.
         else {
-            newNode.next = head; //the node after the new one is the initial head
-            head = newNode; //now the head is the new node
+            newNode.next = head; // the node after the new one is the initial head
+            head = newNode; // now the head is the new node
         }
         size++;
     }
@@ -36,11 +36,11 @@ public class LL<E> {
     public void addLast(E e) {
         Node<E> newNode = new Node<>(e);
 
-        if (tail == null) { //if the tail is empty (list is empty)
-            head = tail = newNode; //the tail is the head and is the new node.
+        if (tail == null) { // if the tail is empty (list is empty)
+            head = tail = newNode; // the tail is the head and is the new node.
         } else {
-            tail.next = newNode; //the node after the initial tail is the new node
-            tail = newNode; //now the new node is the tail.
+            tail.next = newNode; // the node after the initial tail is the new node
+            tail = newNode; // now the new node is the tail.
         }
         size++;
     }
@@ -54,10 +54,10 @@ public class LL<E> {
             addLast(e);
         } else {
             Node<E> current = head;
-            for (int i = 0; i < index - 1; i++) //traverse and stop before the requested index
+            for (int i = 0; i < index - 1; i++) // traverse and stop before the requested index
                 current = current.next;
 
-            Node<E> temp = current.next; //temporary for disconnection
+            Node<E> temp = current.next; // temporary for disconnection
 
             current.next = new Node<>(e);
             current.next.next = temp;
@@ -90,7 +90,7 @@ public class LL<E> {
             Node<E> temp = tail;
             Node<E> current = head;
 
-            for (int i = 0; i < size - 2; i++) //traverse until the node before the tail
+            for (int i = 0; i < size - 2; i++) // traverse until the node before the tail
                 current = current.next;
 
             tail = current;
@@ -111,7 +111,7 @@ public class LL<E> {
         else {
             Node<E> current = head;
 
-            for (int i = 0; i < index - 1; i++) //traverse and stop before the requested index
+            for (int i = 0; i < index - 1; i++) // traverse and stop before the requested index
                 current = current.next;
 
             Node<E> temp = current.next;
@@ -150,7 +150,7 @@ public class LL<E> {
         else {
             Node<E> current = head;
 
-            for (int i = 0; i < index; i++) //traverse until the index
+            for (int i = 0; i < index; i++) // traverse until the index
                 current = current.next;
 
             return current.element;
@@ -162,15 +162,15 @@ public class LL<E> {
     }
 
     public E getMiddleValue() {
-        return get((int) size/2);
+        return get((int) size / 2);
     }
-    
+
     public E getLast() {
         return tail.element;
     }
 
     public int indexOf(E e) {
-        Node<E> current = head; //starting from the head
+        Node<E> current = head; // starting from the head
 
         for (int i = 0; i < size - 1; i++) {
             if (current.element.equals(e))
@@ -182,11 +182,11 @@ public class LL<E> {
     }
 
     public int lastIndexOf(E e) {
-        /*note:
-         * I'm still looking for a better to do this method.
-         * Singly linked list cannot be traversed backwards, it can only go forward.
-         * This is a major disadvantage to get the lastIndexOf() since we cannot start
-         * from the tail of the linked list, then traverse it backwards.
+        /*
+         * note: I'm still looking for a better to do this method. Singly linked list
+         * cannot be traversed backwards, it can only go forward. This is a major
+         * disadvantage to get the lastIndexOf() since we cannot start from the tail of
+         * the linked list, then traverse it backwards.
          */
 
         Node<E> current = head;
@@ -199,13 +199,13 @@ public class LL<E> {
         }
         return idx;
     }
-    
-    public E set(int index, E e){
-        if(index < 0 || index >= size){
+
+    public E set(int index, E e) {
+        if (index < 0 || index >= size) {
             return null;
-        }else{
+        } else {
             Node<E> current = head;
-            for(int i=0; i<index; i++)
+            for (int i = 0; i < index; i++)
                 current = current.next;
 
             E temp = current.element;
@@ -229,38 +229,36 @@ public class LL<E> {
         System.out.println(tail.element);
     }
 
-    public void reverse(){
-        /*The concept:
-        *   null -> 1 -> 2 -> 3 -> null
-        * Starting from the head (1), its next node will become the head's previous node (null), so:
-        *   1 -> null
-        * Then the head/previous will be the current node (1).
-        *
-        * Moving on to the next node (2), its next node will become the previous node (1), so:
-        *   2 -> 1 -> null
-        * Then, as before, the head/previous will be the current node (2)
-        *
-        * Moving on to the next node (3), its next node will become the previous node (2), so:
-        *   3 -> 2 -> 1 -> null
-        * Then, the head/previous will be the current node (3)
-        *
-        * The next node is null, so break the iterative loop.
-        * Voila! There you go: a reversed singly linked list!
-        * */
+    public void reverse() {
+        /*
+         * The concept: null -> 1 -> 2 -> 3 -> null Starting from the head (1), its next
+         * node will become the head's previous node (null), so: 1 -> null Then the
+         * head/previous will be the current node (1).
+         *
+         * Moving on to the next node (2), its next node will become the previous node
+         * (1), so: 2 -> 1 -> null Then, as before, the head/previous will be the
+         * current node (2)
+         *
+         * Moving on to the next node (3), its next node will become the previous node
+         * (2), so: 3 -> 2 -> 1 -> null Then, the head/previous will be the current node
+         * (3)
+         *
+         * The next node is null, so break the iterative loop. Voila! There you go: a
+         * reversed singly linked list!
+         */
 
         Node<E> next = head;
         tail = head;
         Node<E> previous = null, current = null;
 
-        while(next != null){
+        while (next != null) {
             current = next;
             next = current.next;
 
-            //REVERSE THE LINK
+            // REVERSE THE LINK
             current.next = previous;
             previous = current;
             head = current;
         }
     }
-
 }
