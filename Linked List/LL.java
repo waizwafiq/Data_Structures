@@ -161,6 +161,10 @@ public class LL<E> {
         return head.element;
     }
 
+    public E getMiddleValue() {
+        return get((int) size/2);
+    }
+    
     public E getLast() {
         return tail.element;
     }
