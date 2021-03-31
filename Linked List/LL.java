@@ -211,8 +211,9 @@ public class LL<E> {
         }
     }
 
-    public void clear(){
+    public void clear() {
         head = tail = null;
+        size = 0;
     }
 
     public void print() {
@@ -244,6 +245,7 @@ public class LL<E> {
         * */
 
         Node<E> next = head;
+        tail = head;
         Node<E> previous = null, current = null;
 
         while(next != null){
