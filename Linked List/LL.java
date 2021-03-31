@@ -218,11 +218,11 @@ public class LL<E> {
 
     public void print() {
         Node<E> current = head;
-        while (current != null) {
+        while (current.next != null) {
             System.out.print(current.element + " -> ");
             current = current.next;
         }
-        System.out.println("null");
+        System.out.println(tail.element);
     }
 
     public void reverse(){
