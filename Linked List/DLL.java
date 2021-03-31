@@ -92,19 +92,35 @@ public class DLL<E> {
             addFirst(e);
         } else if (index >= size - 1) {
             addLast(e);
-        } else {
-            // try dividing into two? if idx < size/2 : only go for left and so on bla bla
-            Node<E> current = head;
+        } else if (index <= size / 2) {
             Node<E> newNode = new Node<>(e);
-            for (int i = 0; i < index - 1; i++)
+
+            // Add element at the left part of the list (starting from head)
+            Node<E> current = head;
+
+            for (int i = 0; i < index - 1; i++) // traverse and stop before the requested index
                 current = current.next;
+
+            Node<E> temp = current.next; // temporary for disconnection
+
+            current.next = newNode;
+            newNode.next = temp;
+            newNode.previous = current;
+            size++;
+        } else {
+            Node<E> newNode = new Node<>(e);
+
+            // Add element at the right part of the list (starting from the tail)
+            Node<E> current = tail;
+
+            for (int i = 0; i < size - index; i++) 
+                current = current.previous;
 
             Node<E> temp = current.next;
 
             current.next = newNode;
-            newNode.previous = current;
             newNode.next = temp;
-
+            newNode.previous = current;
             size++;
         }
     }
