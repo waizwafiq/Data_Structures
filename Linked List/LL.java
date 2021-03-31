@@ -195,8 +195,36 @@ public class LL<E> {
         }
         return idx;
     }
-
+    
     public E set(int index, E e){
+        if(index < 0 || index >= size){
+            return null;
+        }else{
+            Node<E> current = head;
+            for(int i=0; i<index; i++)
+                current = current.next;
+
+            E temp = current.element;
+            current.element = e;
+
+            return temp;
+        }
+    }
+
+    public void clear(){
+        head = tail = null;
+    }
+
+    public void print() {
+        Node<E> current = head;
+        while (current != null) {
+            System.out.print(current.element + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    public void reverse(){
 
     }
 
