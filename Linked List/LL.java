@@ -225,7 +225,36 @@ public class LL<E> {
     }
 
     public void reverse(){
+        /*The concept:
+        *   null -> 1 -> 2 -> 3 -> null
+        * Starting from the head (1), its next node will become the head's previous node (null), so:
+        *   1 -> null
+        * Then the head/previous will be the current node (1).
+        *
+        * Moving on to the next node (2), its next node will become the previous node (1), so:
+        *   2 -> 1 -> null
+        * Then, as before, the head/previous will be the current node (2)
+        *
+        * Moving on to the next node (3), its next node will become the previous node (2), so:
+        *   3 -> 2 -> 1 -> null
+        * Then, the head/previous will be the current node (3)
+        *
+        * The next node is null, so break the iterative loop.
+        * Voila! There you go: a reversed singly linked list!
+        * */
 
+        Node<E> next = head;
+        Node<E> previous = null, current = null;
+
+        while(next != null){
+            current = next;
+            next = current.next;
+
+            //REVERSE THE LINK
+            current.next = previous;
+            previous = current;
+            head = current;
+        }
     }
 
 }
