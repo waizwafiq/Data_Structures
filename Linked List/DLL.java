@@ -88,10 +88,55 @@ public class DLL<E> {
     public void add(int index, E e) {
         if (index < 0) {
             throw new IndexOutOfBoundsException("Negative index is not possible!");
-        }else if(index == 0){
+        } else if (index == 0) {
             addFirst(e);
-        }else if(index == size-1){
+        } else if (index >= size - 1) {
             addLast(e);
+        } else {
+            // try dividing into two? if idx < size/2 : only go for left and so on bla bla
+            Node<E> current = head;
+            Node<E> newNode = new Node<>(e);
+            for (int i = 0; i < index - 1; i++)
+                current = current.next;
+
+            Node<E> temp = current.next;
+
+            current.next = newNode;
+            newNode.previous = current;
+            newNode.next = temp;
+
+            size++;
+        }
+    }
+
+    public E removeFirst() {
+        if (size == 0)
+            return null;
+        else {
+            Node<E> temp = head;
+
+            head = head.next;
+            head.previous = null;
+            size--;
+
+            return temp.element;
+        }
+    }
+
+    public E removeLast() {
+        if (size == 0)
+            return null;
+        else if (size == 1) {
+            Node<E> temp = head;
+            head = tail = null;
+            size = 0;
+            return temp.element;
+        } else {
+            Node<E> temp = tail;
+            tail.previous.next = null;
+            tail = tail.previous;
+
+            return temp.element;
         }
     }
 
@@ -103,14 +148,4 @@ public class DLL<E> {
         }
         System.out.println(tail.element);
     }
-
-    public static void main(String[] args) {
-        DLL<Integer> list = new DLL<>();
-        list.addFirst(4);
-        list.addFirst(3);
-        list.addFirst(2);
-        list.addFirst(1);
-        list.print();
-    }
-
 }
