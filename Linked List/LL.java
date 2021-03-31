@@ -50,7 +50,7 @@ public class LL<E> {
             throw new IndexOutOfBoundsException("Negative index is not possible!");
         } else if (index == 0) {
             addFirst(e);
-        } else if (index >= size) {
+        } else if (index >= size - 1) {
             addLast(e);
         } else {
             Node<E> current = head;
