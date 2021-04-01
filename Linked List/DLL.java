@@ -124,6 +124,13 @@ public class DLL<E> {
             size++;
         }
     }
+    
+    public void add(E e) {
+        if (size == 0)
+            addFirst(e);
+        else
+            addLast(e);
+    }
 
     public E removeFirst() {
         if (size == 0)
