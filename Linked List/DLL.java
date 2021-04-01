@@ -261,15 +261,6 @@ public class DLL<E> {
         return -1;
     }
     
-    public void print() {
-        Node<E> current = head;
-        while (current.next != null) {
-            System.out.print(current.element + " <-> ");
-            current = current.next;
-        }
-        System.out.println(tail.element);
-    }
-    
     public E set(int index, E e) {
         if (index < 0 || index >= size)
             return null;
@@ -296,5 +287,36 @@ public class DLL<E> {
 
             return temp;
         }
+    }
+    
+    public void clear(){
+        head = tail = null;
+        size = 0;
+    }
+
+    public void print() {
+        Node<E> current = head;
+        while (current.next != null) {
+            System.out.print(current.element + " <-> ");
+            current = current.next;
+        }
+        System.out.println(tail.element);
+    }
+    
+    public void reverse() {
+        Node<E> previous = null;
+        Node<E> current = head;
+
+        while(current != null){
+            previous = current.previous;
+
+            //swap previous and next nodes of the current node
+            current.previous = current.next;
+            current.next = previous;
+
+            current = current.previous; //go to the 'next' node (which is now the previous node)
+        }
+        tail = head;
+        head = previous.previous;
     }
 }
