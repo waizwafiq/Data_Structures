@@ -143,12 +143,12 @@ public class LL<E> {
     }
 
     public E get(int index) {
-        if (size == 0)
+        if (size == 0 || index < 0 || index >= size)
             return null;
         else {
             Node<E> current = head;
 
-            for (int i = 0; i < index; i++) // traverse until the index
+            for (int i = 0; i < index; i++) //traverse until the index
                 current = current.next;
 
             return current.element;
