@@ -159,6 +159,7 @@ public class DLL<E> {
             tail.previous.next = null;
             tail = tail.previous;
 
+            size--;
             return temp.element;
         }
     }
