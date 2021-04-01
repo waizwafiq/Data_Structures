@@ -156,6 +156,43 @@ public class DLL<E> {
         }
     }
 
+    public E remove(int index) {
+        if (index < 0)
+            throw new IndexOutOfBoundsException("Negative index is not possible!");
+        else if (index == 0)
+            removeFirst();
+        else if (index >= size - 1)
+            removeLast();
+        else if (index <= size / 2) {
+            // Remove node at the left side (start from head)
+            Node<E> current = head;
+
+            for (int i = 0; i < index - 1; i++)
+                current = current.next;
+
+            Node<E> temp = current.next;
+            current.next = temp.next;
+            current.next.previous = current;
+            size--;
+
+            return temp.element;
+        } else {
+            // Remove node at the right side (start from tail)
+            Node<E> current = tail;
+
+            for (int i = 0; i < size - index - 1; i++) // traverse until the node before index
+                current = current.previous;
+
+            Node<E> temp = current.next;
+            current.next = temp.next;
+            current.next.previous = current;
+            size--;
+
+            return temp.element;
+        }
+        return null;
+    }
+    
     public void print() {
         Node<E> current = head;
         while (current.next != null) {
