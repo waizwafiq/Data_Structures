@@ -159,7 +159,7 @@ public class LL<E> {
         return head.element;
     }
 
-    public E getMiddleValue() {
+    public E getMiddle() {
         return get((int) size / 2);
     }
 
