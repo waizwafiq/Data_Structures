@@ -8,11 +8,6 @@ public class LL<E> {
             this.next = null;
             this.element = element;
         }
-
-        public Node(Node next, T element) {
-            this.next = next;
-            this.element = element;
-        }
     }
 
     private Node<E> head, tail;
