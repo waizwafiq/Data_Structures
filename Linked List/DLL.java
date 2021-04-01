@@ -268,4 +268,32 @@ public class DLL<E> {
         }
         System.out.println(tail.element);
     }
+    
+    public E set(int index, E e) {
+        if (index < 0 || index >= size)
+            return null;
+        else if (index <= size / 2) {
+            // set the node at the left part (starting from head)
+            Node<E> current = head;
+
+            for (int i = 0; i < index; i++)
+                current = current.next;
+
+            E temp = current.element;
+            current.element = e;
+
+            return temp;
+        } else {
+            // set the node at the right part (starting from tail)
+            Node<E> current = tail;
+
+            for (int i = 0; i < size - index - 1; i++)
+                current = current.previous;
+
+            E temp = current.element;
+            current.element = e;
+
+            return temp;
+        }
+    }
 }
