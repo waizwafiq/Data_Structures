@@ -65,6 +65,13 @@ public class LL<E> {
         }
     }
 
+    public void add(E e) {
+        if (size == 0)
+            addFirst(e);
+        else
+            addLast(e);
+    }
+    
     public E removeFirst() {
         if (size == 0)
             return null;
@@ -120,13 +127,6 @@ public class LL<E> {
 
             return temp.element;
         }
-    }
-
-    public void add(E e) {
-        if (size == 0)
-            addFirst(e);
-        else
-            addLast(e);
     }
 
     public boolean contains(E e) {
