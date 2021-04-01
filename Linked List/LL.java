@@ -130,18 +130,16 @@ public class LL<E> {
     }
 
     public boolean contains(E e) {
-        if (size == 0)
-            return false;
-        else {
+        if(size != 0) {
             Node<E> current = head;
-            while (current != null) {
-                if (current.element.equals(e))
+            while(current != null){
+                if(current.element.equals(e))
                     return true;
+                
                 current = current.next;
             }
-
-            return false;
         }
+        return false;
     }
 
     public E get(int index) {
