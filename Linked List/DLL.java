@@ -234,6 +234,32 @@ public class DLL<E> {
         return tail.element;
     }
     
+    public int indexOf(E e) {
+        Node<E> current = head;
+
+        for (int i = 0; i < size; i++) {
+            if (current.element.equals(e))
+                return i;
+
+            current = current.next;
+        }
+
+        return -1;
+    }
+
+    public int lastIndexOf(E e) {
+        Node<E> current = tail;
+
+        for (int i = size - 1; i >= 0; i--) {
+            if (current.element.equals(e))
+                return i;
+
+            current = current.previous;
+        }
+
+        return -1;
+    }
+    
     public void print() {
         Node<E> current = head;
         while (current.next != null) {
