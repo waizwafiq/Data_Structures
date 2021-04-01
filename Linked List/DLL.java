@@ -9,42 +9,6 @@ public class DLL<E> {
             this.previous = null;
             this.element = element;
         }
-
-        public Node(Node next, T element) {
-            this.next = null;
-            this.previous = null;
-            this.element = element;
-        }
-
-        public Node(Node next, Node previous, T element) {
-            this.next = next;
-            this.previous = previous;
-            this.element = element;
-        }
-
-        public Node<T> getNext() {
-            return next;
-        }
-
-        public void setNext(Node<T> next) {
-            this.next = next;
-        }
-
-        public Node<T> getPrevious() {
-            return previous;
-        }
-
-        public void setPrevious(Node<T> previous) {
-            this.previous = previous;
-        }
-
-        public T getElement() {
-            return element;
-        }
-
-        public void setElement(T element) {
-            this.element = element;
-        }
     }
 
     private Node<E> head, tail;
