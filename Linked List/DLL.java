@@ -200,6 +200,40 @@ public class DLL<E> {
         return null;
     }
     
+    public E get(int index) {
+        if (size == 0 || index < 0 || index >= size) {
+            return null;
+        } else if (index <= size / 2) {
+            // get the node at the left side of the list (starting from head)
+            Node<E> current = head;
+
+            for (int i = 0; i < index; i++)
+                current = current.next;
+
+            return current.element;
+        } else {
+            // get the node at the right side of the list (starting from tail)
+            Node<E> current = tail;
+
+            for (int i = 0; i < size - index - 1; i++)
+                current = current.previous;
+
+            return current.element;
+        }
+    }
+
+    public E getFirst() {
+        return head.element;
+    }
+
+    public E getMiddle() {
+        return get(size/2);
+    }
+
+    public E getLast() {
+        return tail.element;
+    }
+    
     public void print() {
         Node<E> current = head;
         while (current.next != null) {
