@@ -255,7 +255,20 @@ public class CLL<E> implements LinkedListInterface<E> {
 
     @Override
     public void reverse() {
-        // TODO Auto-generated method stub
-        
-    }   
+        Node<E> next = head;
+        tail = head;
+        Node<E> previous = null, current = null;
+
+        do {
+            current = next;
+            next = current.next;
+
+            // REVERSE THE LINK
+            current.next = previous;
+            previous = current;
+        } while (next != head);
+
+        head = current;
+        tail.next = head; //update tail's next node (which is the head node)
+    }
 }
