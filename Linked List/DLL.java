@@ -1,4 +1,4 @@
-public class DLL<E> {
+public class DLL<E> implements LinkedListInterface<E> {
 
     private class Node<T> {
         Node<T> next, previous;
