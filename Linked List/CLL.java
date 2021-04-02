@@ -198,26 +198,59 @@ public class CLL<E> implements LinkedListInterface<E> {
 
     @Override
     public int lastIndexOf(E e) {
-        // TODO Auto-generated method stub
-        return 0;
+        /*
+         * note: I'm still looking for a better to do this method. Singly linked list
+         * cannot be traversed backwards, it can only go forward. This is a major
+         * disadvantage to get the lastIndexOf() since we cannot start from the tail of
+         * the linked list, then traverse it backwards.
+         */
+
+        Node<E> current = head;
+        int idx = -1;
+
+        for (int i = 0; i < size; i++) {
+            if (current.element.equals(e))
+                idx = i;
+            current = current.next;
+        }
+        return idx;
     }
 
     @Override
     public E set(int index, E e) {
-        // TODO Auto-generated method stub
-        return null;
+        if (index < 0 || index >= size)
+            return null;
+        else {
+            Node<E> current = head;
+
+            for (int i = 0; i < index; i++)
+                current = current.next;
+
+            Node<E> temp = current;
+            current.element = e;
+
+            return temp.element;
+        }
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        
+        head = tail = null;
+        size = 0;
     }
 
     @Override
     public void print() {
-        // TODO Auto-generated method stub
-        
+        Node<E> current = head;
+
+        System.out.print("-> ");
+        while (current != tail) {
+            System.out.print(current.element + " -> ");
+            current = current.next;
+        }
+        System.out.println(tail.element + " -> ");
+        System.out.println("Head: " + head.element + "\nTail: " + tail.element);
+        System.out.println("Element after tail: " + tail.next.element);
     }
 
     @Override
