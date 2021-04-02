@@ -9,5 +9,5 @@ List of Linked Lists done:
 
 I am currently working on:
 1. Circular Doubly Linked List (CDLL)
-2. 2D Singly Linked List (NLL)
-3. 2D Doubly Linked List (NDLL)
+2. 2D Singly Linked List (TLL)
+3. 2D Doubly Linked List (TDLL)
