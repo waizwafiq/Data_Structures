@@ -16,6 +16,10 @@ public class CLL<E> implements LinkedListInterface<E> {
     public CLL() {
     }
 
+    public int getSize() {
+        return size;
+    }
+    
     @Override
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
