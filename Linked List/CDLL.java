@@ -317,12 +317,13 @@ public class CDLL<E> implements LinkedListInterface<E> {
         System.out.println(tail.element + " <-> ");
 
         System.out.println("Head: " + head.element + "\nTail: " + tail.element);
+
         System.out.println("Element after tail: " + tail.next.element);
+        System.out.println("Element before head: " + head.previous.element);
     }
 
     @Override
     public void reverse() {
-        // TODO Auto-generated method stub
 
     }
 }
