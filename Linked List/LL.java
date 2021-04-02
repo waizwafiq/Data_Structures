@@ -16,6 +16,10 @@ public class LL<E> implements LinkedListInterface<E> {
     public LL() {
     }
 
+    public int getSize() {
+        return size;
+    }
+    
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
 
