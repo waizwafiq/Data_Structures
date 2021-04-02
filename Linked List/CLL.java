@@ -140,6 +140,9 @@ public class CLL<E> implements LinkedListInterface<E> {
     public boolean contains(E e) {
         if (size != 0) {
             Node<E> current = head;
+            
+            if (tail.element.equals(e)) //the loop will skip when current node reaches the tail node. (need improvement here if possible)
+                return true;
             while (current != tail) {
                 if (current.element.equals(e))
                     return true;
@@ -166,26 +169,31 @@ public class CLL<E> implements LinkedListInterface<E> {
 
     @Override
     public E getFirst() {
-        // TODO Auto-generated method stub
-        return null;
+        return head.element;
     }
 
     @Override
     public E getMiddle() {
-        // TODO Auto-generated method stub
-        return null;
+        return get(size / 2);
     }
 
     @Override
     public E getLast() {
-        // TODO Auto-generated method stub
-        return null;
+        return tail.element;
     }
 
     @Override
     public int indexOf(E e) {
-        // TODO Auto-generated method stub
-        return 0;
+        Node<E> current = head;
+
+        for (int i = 0; i < size; i++) {
+            if (current.element.equals(e))
+                return i;
+
+            current = current.next;
+        }
+
+        return -1;
     }
 
     @Override
