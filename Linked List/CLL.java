@@ -18,26 +18,61 @@ public class CLL<E> implements LinkedListInterface<E> {
 
     @Override
     public void addFirst(E e) {
-        // TODO Auto-generated method stub
-        
+        Node<E> newNode = new Node<>(e);
+
+        if (head == null) {
+            head = tail = newNode;
+            tail.next = head; // update the tail's next node
+        } else {
+            newNode.next = head;
+            head = newNode;
+            tail.next = newNode; // update the tail's next node
+        }
+        size++;
     }
 
     @Override
     public void addLast(E e) {
-        // TODO Auto-generated method stub
-        
+        Node<E> newNode = new Node<>(e);
+
+        if (tail == null) {
+            head = tail = newNode;
+            tail.next = head; // update the tail's next node
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+            tail.next = head; // update the tail's next node
+        }
+        size++;
     }
 
     @Override
     public void add(int index, E e) {
-        // TODO Auto-generated method stub
-        
+        if (index < 0)
+            throw new IndexOutOfBoundsException("Negative index is not possible!");
+        else if (index == 0)
+            addFirst(e);
+        else if (index == size - 1)
+            addLast(e);
+        else {
+            Node<E> current = head;
+            for (int i = 0; i < index - 1; i++) // traverse and stop before the requested index
+                current = current.next;
+
+            Node<E> temp = current.next; // temporary for disconnection
+
+            current.next = new Node<>(e);
+            current.next.next = temp;
+            size++;
+        }
     }
 
     @Override
     public void add(E e) {
-        // TODO Auto-generated method stub
-        
+        if (size == 0)
+            addFirst(e);
+        else
+            addLast(e);
     }
 
     @Override
