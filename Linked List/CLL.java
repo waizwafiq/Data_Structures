@@ -138,14 +138,30 @@ public class CLL<E> implements LinkedListInterface<E> {
 
     @Override
     public boolean contains(E e) {
-        // TODO Auto-generated method stub
+        if (size != 0) {
+            Node<E> current = head;
+            while (current != tail) {
+                if (current.element.equals(e))
+                    return true;
+
+                current = current.next;
+            }
+        }
         return false;
     }
 
     @Override
     public E get(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        if (index < 0 || index >= size)
+            return null;
+        else {
+            Node<E> current = head;
+
+            for (int i = 0; i < index; i++)
+                current = current.next;
+
+            return current.element;
+        }
     }
 
     @Override
