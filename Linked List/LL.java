@@ -251,7 +251,7 @@ public class LL<E> implements LinkedListInterface<E> {
             // REVERSE THE LINK
             current.next = previous;
             previous = current;
-            head = current;
         }
+        head = current;
     }
 }
