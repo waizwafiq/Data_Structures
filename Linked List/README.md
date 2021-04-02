@@ -9,5 +9,6 @@ List of Linked Lists done:
 <hr>
 
 I am currently working on:
-1. 2D Singly Linked List (TLL)
-2. 2D Doubly Linked List (TDLL)
+1. Documenting (using javadoc) the interface 
+2. 2D Singly Linked List (TLL)
+3. 2D Doubly Linked List (TDLL)
