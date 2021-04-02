@@ -77,20 +77,63 @@ public class CLL<E> implements LinkedListInterface<E> {
 
     @Override
     public E removeFirst() {
-        // TODO Auto-generated method stub
-        return null;
+        if (size == 0)
+            return null;
+        else {
+            Node<E> temp = head;
+
+            head = head.next;
+            tail.next = head; // update the tail's next node
+
+            size--;
+            return temp.element;
+        }
     }
 
     @Override
     public E removeLast() {
-        // TODO Auto-generated method stub
-        return null;
+        if (size == 0)
+            return null;
+        else if (size == 1) {
+            Node<E> temp = head;
+            head = tail = null;
+            size--;
+            return temp.element;
+        } else {
+            Node<E> temp = tail;
+            Node<E> current = head;
+
+            for (int i = 0; i < size - 2; i++) // traverse until the node before the tail
+                current = current.next;
+
+            tail = current;
+            tail.next = head;
+            size--;
+
+            return temp.element;
+        }
     }
 
     @Override
     public E remove(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        if (index < 0 || index >= size)
+            return null;
+        else if (index == 0)
+            return removeFirst();
+        else if (index == size - 1)
+            return removeLast();
+        else {
+            Node<E> current = head;
+
+            for (int i = 0; i < index - 1; i++) // traverse and stop before the requested index
+                current = current.next;
+
+            Node<E> temp = current.next;
+            current.next = temp.next;
+            size--;
+
+            return temp.element;
+        }
     }
 
     @Override
