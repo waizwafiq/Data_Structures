@@ -27,12 +27,14 @@ public class CDLL<E> implements LinkedListInterface<E> {
             head.previous = tail;
             tail.next = head;
         } else {
+            // (reconnection)
             head.previous = newNode;
-
-            // update the head node (reconnection)
             newNode.next = head;
-            newNode.previous = tail;
+
             head = newNode;
+            // update tail and head's next and previous nodes respectively
+            tail.next = head;
+            head.previous = tail;
         }
 
         size++;
@@ -48,9 +50,9 @@ public class CDLL<E> implements LinkedListInterface<E> {
         } else {
             tail.next = newNode;
             newNode.previous = tail;
-            tail = newNode;
 
-            // reconnect new tail node
+            tail = newNode;
+            // update tail and head's next and previous nodes respectively
             tail.next = head;
             head.previous = tail;
         }
@@ -324,6 +326,24 @@ public class CDLL<E> implements LinkedListInterface<E> {
 
     @Override
     public void reverse() {
+        Node<E> previous = null;
+        Node<E> current = head;
 
+        do {
+            previous = current.previous;
+
+            // swap previous and next nodes of the current node
+            current.previous = current.next;
+            current.next = previous;
+
+            current = current.previous; // go to the 'next' node (which is now the previous node)
+        } while (current != head);
+
+        tail = head;
+        head = previous.previous;
+
+        // update tail and head's next and previous node respectively
+        tail.next = head;
+        head.previous = tail;
     }
 }
