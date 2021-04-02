@@ -1,5 +1,7 @@
 public interface LinkedListInterface<E> {
 
+    public int getSize();
+    
     public void addFirst(E e);
 
     public void addLast(E e);
