@@ -1,4 +1,4 @@
-public class LL<E> {
+public class LL<E> implements LinkedListInterface<E> {
 
     private class Node<T> {
         private Node<T> next;
