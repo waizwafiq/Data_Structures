@@ -165,7 +165,7 @@ public class LL<E> implements LinkedListInterface<E> {
     public int indexOf(E e) {
         Node<E> current = head; // starting from the head
 
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             if (current.element.equals(e))
                 return i;
             current = current.next;
@@ -185,7 +185,7 @@ public class LL<E> implements LinkedListInterface<E> {
         Node<E> current = head;
         int idx = -1;
 
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             if (current.element.equals(e))
                 idx = i;
             current = current.next;
