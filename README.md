@@ -1,4 +1,4 @@
-<h1>Data Strucutres in Java</h1>
+<h1>Data Structures in Java</h1>
 
 I am planning to implement data structures concepts using Java as much from scratch as possible.
 So far, the data structures that I have implemented are:
