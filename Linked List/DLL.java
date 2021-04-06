@@ -268,19 +268,65 @@ public class DLL<E> implements LinkedListInterface<E> {
     }
     
     public void reverse() {
+        /*Another idea to optimize time complexity:
+        * ->Swap head and tail and traverse forward and backward respectively
+        * ->Swap the previous and next nodes of each node
+        * ->If size is odd, the middle node stays in the same position, 
+        *   but the prev and next nodes are swapped.
+        * Illustration:
+        *     a <-> b <-> c <-> d <-> e  Start!
+        *     e <-> b <-> c <-> d <-> a
+        *     e <-> d <-> c <-> b <-> a  Done!
+        * 
+        *     Time complexity: f(n) = n/2
+        *     Worst case     : O(n)?
+        */
+
+        if(head != null){
+            Node<E> current1 = head, current2 = tail;
+            Node<E> temp = null;
+
+            tail = current1;
+            head = current2;
+            for(int i=0; i<getSize()/2; i++){
+                //swap next and prev nodes for current1
+                temp = current1.previous;
+                current1.previous = current1.next;
+                current1.next = temp;
+
+                //swap next and prev nodes for current1
+                temp = current2.previous;
+                current2.previous = current2.next;
+                current2.next = temp;
+
+                current1 = current1.previous;
+                current2 = current2.next;
+            }
+            if(getSize()%2 != 0){
+                Node<E> middle = current1;
+                middle.next = current2.previous;
+                middle.previous = current1.next;
+            }
+        }
+
+        
+        /* Old algorithm:
+        30% slower if the size of the list is very big.
+        If the size is small, there's no significant difference.
+        
         Node<E> previous = null;
         Node<E> current = head;
 
-        while(current != null){
+        while (current != null) {
             previous = current.previous;
 
-            //swap previous and next nodes of the current node
+            // swap previous and next nodes of the current node
             current.previous = current.next;
             current.next = previous;
 
-            current = current.previous; //go to the 'next' node (which is now the previous node)
+            current = current.previous; // go to the 'next' node (which is now the previous node)
         }
         tail = head;
-        head = previous.previous;
+        head = previous.previous; */
     }
 }
