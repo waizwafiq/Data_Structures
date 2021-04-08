@@ -48,9 +48,13 @@ public class Stack<T> implements StackInterface<T> {
 
     public String toString() {
         String out = "The Stack:\n";
-        for(Object elems:list.toArray())
-            out+=elems+"\n";
-        
+        for (Object elems : list.toArray())
+            out += elems + "\n";
+
         return out;
+    }
+
+    public boolean search(T o) {
+        return list.contains(o);
     }
 }
