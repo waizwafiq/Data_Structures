@@ -1,45 +1,56 @@
+import java.util.ArrayList;
 import java.util.EmptyStackException;
 
+/** USING ARRAYLIST TO IMPLEMENT STACK DATA STRUCTURE */
+
 public class Stack<T> implements StackInterface<T> {
-    private T[] stack;
-    private int size, idx = 0;
 
-    public Stack(int size) {
-        this.size = size;
-        stack = (T[]) new Object[size];
+    private ArrayList<T> list;
+
+    public Stack() {
+        list = new ArrayList<>();
     }
 
+    @Override
     public void push(T data) {
-        if (isFull())
-            throw new StackOverflowError("Stack is full!");
-
-        stack[idx++] = data;
+        list.add(data);
     }
 
-    public void pop() {
+    @Override
+    public T pop() {
         if (isEmpty())
             throw new EmptyStackException();
-        --idx;
+
+        T popped = list.get(getSize() - 1);
+        list.remove(popped);
+
+        return popped;
     }
 
-    public boolean isFull() {
-        return idx == size;
+    @Override
+    public T peek() {
+        if (isEmpty())
+            throw new EmptyStackException();
+
+        T peeked = list.get(getSize() - 1);
+        return peeked;
     }
 
+    @Override
+    public int getSize() {
+        return list.size();
+    }
+
+    @Override
     public boolean isEmpty() {
-        return idx == 0;
+        return getSize() == 0;
     }
 
-    public int size() {
-        return idx;
-    }
-
-    public T getData(int idx) {
-        return stack[idx];
-    }
-
-    public void displayStack() {
-        for (int i = idx - 1; i >= 0; i--)
-            System.out.println(getData(i));
+    public String toString() {
+        String out = "The Stack:\n";
+        for(Object elems:list.toArray())
+            out+=elems+"\n";
+        
+        return out;
     }
 }
