@@ -18,14 +18,21 @@ public interface StackInterface<T> {
     /**Popping out the data from the stack. 
      * The popped data must be the one at the top of the stack to obey
      * the Last-In-First-Out (LIFO) concept.
+     * @return the popped data.
      */
-    public void pop();
+    public T pop();
 
-    /**Checks if the stack is full.
+    /**Get the top element in the stack.
      * 
-     * @return true if full
+     * @return The top element of the stack.
      */
-    public boolean isFull();
+    public T peek();
+
+    /**Gets the current size of the stack.
+     * 
+     * @return The size of the stack.
+     */
+    public int getSize();
 
     /**Checks if the stack is empty.
      * 
@@ -33,20 +40,9 @@ public interface StackInterface<T> {
      */
     public boolean isEmpty();
 
-    /**Gets the current size of the stack.
+    /**Displays the elements in the stack.
      * 
-     * @return The size of the stack.
+     * @return The stack.
      */
-    public int size();
-
-    /**Gets the data from the stack with a specified index.
-     * 
-     * @param idx The specified index
-     * @return The value of the data from the stack
-     */
-    public T getData(int idx);
-
-    /**Displays the data in the stack.
-     */
-    public void displayStack();
+    public String toString();
 }
