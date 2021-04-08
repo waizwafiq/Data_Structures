@@ -45,4 +45,11 @@ public interface StackInterface<T> {
      * @return The stack.
      */
     public String toString();
+
+    /**Determine if the object is in the stack
+     * 
+     * @param o : the specified object
+     * @return : true if found, false if not found.
+     */
+    public boolean search(T o);
 }
