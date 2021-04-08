@@ -5,54 +5,18 @@
  * @author Waiz Wafiq
  */
 
-public final class LinkedBag<T> implements BagInterface<T> {
+import java.util.Random;
+public class LinkedBag<T> implements BagInterface<T> {
 
-    /**
-     * The Node class (a private inner class)
-     */
-    private class Node {
-        Node next; // reference to the next node
-        T data; // data carried by this node
-
-        public Node(T data) {
-            next = null;
-            this.data = data;
-        }
-
-        public Node(Node next, T data) {
-            this.next = next;
-            this.data = data;
-        }
-
-        public Node getNext() {
-            return next;
-        }
-
-        public void setNext(Node next) {
-            this.next = next;
-        }
-
-        public T getData() {
-            return data;
-        }
-
-        public void setData(T data) {
-            this.data = data;
-        }
-
-    }
-
-    private Node firstNode;
-    private int numberOfEntries;
+    private CDLL<T> list;
 
     public LinkedBag() {
-        firstNode = null;
-        numberOfEntries = 0;
+        list = new CDLL<>();
     }
 
     @Override
     public int getCurrentSize() {
-        return numberOfEntries;
+        return list.getSize();
     }
 
     @Override
@@ -63,49 +27,39 @@ public final class LinkedBag<T> implements BagInterface<T> {
 
     @Override
     public boolean isEmpty() {
-        return firstNode == null;
+        return getCurrentSize() == 0;
     }
 
     @Override
     public boolean add(T newItem) {
-
-        if (firstNode == null) //if the first node is empty
-            firstNode = new Node(newItem);
-
-        Node temp = new Node(newItem);
-        Node current = firstNode;
-
-        if(current != null) {
-            //traverse until it reaches an empty node
-            while(current.getNext() != null) 
-                current = current.getNext();
-            
-            current.setNext(temp);
-        }
-        numberOfEntries++;
+        
+        list.add(newItem);
         return true;
     }
 
     @Override
     public T remove() {
-        // TODO Auto-generated method stub
-        return null;
+        Random rand = new Random();
+        int removedIdx = rand.nextInt(getCurrentSize());
+
+        T removed = list.get(removedIdx);
+        list.remove(removedIdx);
+        
+        return removed;
     }
 
     @Override
     public boolean remove(T item) {
-        // TODO Auto-generated method stub
-        /* While going through the nodes starting from the head:
-         *      Get the data held by the node.
-         *      If the data = the item to be removed, find a way to remove the node
-         */
-        return false;
+        if(list.contains(item)){
+            list.remove(list.indexOf(item));
+            return true;
+        }else
+            return false;
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-
+        list.clear();
     }
 
     @Override
