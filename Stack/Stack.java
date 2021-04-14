@@ -57,4 +57,13 @@ public class Stack<T> implements StackInterface<T> {
     public boolean search(T o) {
         return list.contains(o);
     }
+    
+    public void reverse(){
+        ArrayList<T> temp = new ArrayList<>();
+
+        for (int i = 0; i < getSize(); i++) 
+            temp.add(list.get(i));
+        
+        list = temp;
+    }
 }
