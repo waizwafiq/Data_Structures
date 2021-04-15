@@ -31,7 +31,9 @@ public class LinkedQueue<E> implements QueueInterface<E> {
         return out;
     }
     
-
+    public void display() {
+        System.out.println(toString());
+    }
     
     public void reverse() {
         list.reverse();
