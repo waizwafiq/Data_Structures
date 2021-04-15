@@ -259,6 +259,11 @@ public class DLL<E> implements LinkedListInterface<E> {
     }
 
     public void print() {
+        if(head == null){
+            System.out.println("List is empty!");
+            return;
+        }
+        
         Node<E> current = head;
         while (current.next != null) {
             System.out.print(current.element + " <-> ");
