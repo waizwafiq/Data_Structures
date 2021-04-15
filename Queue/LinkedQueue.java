@@ -26,7 +26,7 @@ public class LinkedQueue<E> implements QueueInterface<E> {
     @Override
     public String toString() {
         String out = "| ";
-        for (int i = getSize()-1; i>=0; i--)
+        for (int i = getSize() - 1; i >= 0; i--)
             out += list.get(i) + " | ";
         return out;
     }
