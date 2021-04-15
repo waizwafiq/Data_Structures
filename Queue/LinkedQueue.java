@@ -30,4 +30,10 @@ public class LinkedQueue<E> implements QueueInterface<E> {
             out += list.get(i) + " | ";
         return out;
     }
+    
+
+    
+    public void reverse() {
+        list.reverse();
+    }
 }
