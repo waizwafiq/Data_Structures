@@ -258,8 +258,8 @@ public class CLL<E> implements LinkedListInterface<E> {
             current = current.next;
         }
         System.out.println(tail.element + " -> ");
-        System.out.println("Head: " + head.element + "\nTail: " + tail.element);
-        System.out.println("Element after tail: " + tail.next.element);
+        /*System.out.println("Head: " + head.element + "\nTail: " + tail.element);
+        System.out.println("Element after tail: " + tail.next.element);*/
     }
 
     @Override
