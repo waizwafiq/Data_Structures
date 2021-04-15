@@ -33,4 +33,12 @@ public class Queue<T> implements QueueInterface<T> {
             out += list.get(i) + " | ";
         return out;
     }
+    
+    public void reverse() {
+        ArrayList<T> temp = new ArrayList<>();
+        for (int i = getSize() - 1; i >= 0; i--)
+            temp.add(list.get(i));
+
+        list = temp;
+    }
 }
