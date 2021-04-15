@@ -25,4 +25,12 @@ public class Queue<T> implements QueueInterface<T> {
     public int getSize() {
         return list.size();
     }
+    
+    @Override
+    public String toString() {
+        String out = "| ";
+        for (int i = getSize()-1; i>=0; i--)
+            out += list.get(i) + " | ";
+        return out;
+    }
 }
