@@ -245,6 +245,11 @@ public class CLL<E> implements LinkedListInterface<E> {
 
     @Override
     public void print() {
+        if(head == null){
+            System.out.println("List is empty!");
+            return;
+        }
+        
         Node<E> current = head;
 
         System.out.print("-> ");
