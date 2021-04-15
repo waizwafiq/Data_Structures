@@ -29,7 +29,7 @@ public class Queue<T> implements QueueInterface<T> {
     @Override
     public String toString() {
         String out = "| ";
-        for (int i = getSize()-1; i>=0; i--)
+        for (int i = getSize() - 1; i >= 0; i--)
             out += list.get(i) + " | ";
         return out;
     }
