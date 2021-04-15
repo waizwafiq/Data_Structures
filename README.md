@@ -5,6 +5,7 @@ So far, the data structures that I have implemented are:
   * Dynamic Array
   * Bag
   * Stack
+  * Queue
   * Linked List
 
 ### I'm planning to implement more data structures (and maybe some useful algorithms)
