@@ -34,6 +34,10 @@ public class Queue<T> implements QueueInterface<T> {
         return out;
     }
     
+    public void display() {
+        System.out.println(toString());
+    }
+    
     public void reverse() {
         ArrayList<T> temp = new ArrayList<>();
         for (int i = getSize() - 1; i >= 0; i--)
