@@ -1,4 +1,3 @@
-//BINARY SEARCH TREE
 public class BST<T extends Comparable<T>> {
 
     private class Node<E> {
@@ -13,11 +12,11 @@ public class BST<T extends Comparable<T>> {
 
     private Node<T> root;
 
-    public BST(){
+    public BST() {
         root = null;
     }
-    
-        public boolean isEmpty() {
+
+    public boolean isEmpty() {
         return root == null;
     }
 
@@ -25,25 +24,41 @@ public class BST<T extends Comparable<T>> {
         return getSize(root);
     }
 
-    public int getSize(Node<T> current){
+    public int getSize(Node<T> current) {
         if (current == null)
             return 0;
         else
             return getSize(current.left) + getSize(current.right);
     }
 
-    public boolean contains(T e){
+    public boolean contains(T e) {
         return find(root, e);
     }
 
-    public boolean find(Node<T> current, T e){
+    public boolean find(Node<T> current, T e) {
         if (current == null)
             return false;
         else if (e.compareTo(current.element) < 0)
-            return find(current.left, e); //go to the left child
+            return find(current.left, e); // go to the left child
         else if (e.compareTo(current.element) > 0)
-            return find(current.right, e); //go to the right child
+            return find(current.right, e); // go to the right child
         else
             return true;
     }
+
+    public T getElement(T e) {
+        return getElement(root, e);
+    }
+
+    public T getElement(Node<T> current, T e) {
+        if (current == null)
+            return null;
+        else if (e.compareTo(current.element) < 0)
+            return getElement(current.left, e); // go to the left child
+        else if (e.compareTo(current.element) > 0)
+            return getElement(current.right, e); // go to the right child
+        else
+            return current.element;
+    }
+
 }
