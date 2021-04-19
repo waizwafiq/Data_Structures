@@ -15,12 +15,16 @@ public class BST<T extends Comparable<T>> {
     public BST() {
         root = null;
     }
-    
-    public void add(T e){
+
+    public BST(T e) {
+        root.element = e;
+    }
+
+    public void add(T e) {
         root = add(root, e);
     }
 
-    public Node<T> add(Node<T> current, T e){
+    public Node<T> add(Node<T> current, T e) {
         if (current == null)
             current = new Node<>(e);
         else if (e.compareTo(current.element) <= 0)
