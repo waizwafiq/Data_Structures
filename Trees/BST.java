@@ -43,7 +43,7 @@ public class BST<T extends Comparable<T>> {
         if (current == null)
             return 0;
         else
-            return getSize(current.left) + getSize(current.right);
+            return getSize(current.left) + getSize(current.right) + 1;
     }
 
     public boolean contains(T e) {
