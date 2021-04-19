@@ -15,6 +15,21 @@ public class BST<T extends Comparable<T>> {
     public BST() {
         root = null;
     }
+    
+    public void add(T e){
+        root = add(root, e);
+    }
+
+    public Node<T> add(Node<T> current, T e){
+        if (current == null)
+            current = new Node<>(e);
+        else if (e.compareTo(current.element) <= 0)
+            current.left = add(current.left, e);
+        else
+            current.right = add(current.right, e);
+
+        return current;
+    }
 
     public boolean isEmpty() {
         return root == null;
@@ -60,5 +75,4 @@ public class BST<T extends Comparable<T>> {
         else
             return current.element;
     }
-
 }
