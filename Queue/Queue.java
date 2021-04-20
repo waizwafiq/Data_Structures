@@ -34,7 +34,7 @@ public class Queue<T> implements QueueInterface<T> {
     }
     
     public E peek() {
-        return list.getFirst();
+        return list.get(0);
     }
 
     @Override
