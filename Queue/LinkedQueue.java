@@ -25,6 +25,10 @@ public class LinkedQueue<E> implements QueueInterface<E> {
         return dequeued;
     }
 
+    public E getElement(int index) {
+        return list.get(index);
+    }
+
     @Override
     public int getSize() {
         return list.getSize();
