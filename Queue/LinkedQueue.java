@@ -15,7 +15,7 @@ public class LinkedQueue<E> implements QueueInterface<E> {
 
     @Override
     public void enqueue(E e) {
-        list.addLast(e);
+        list.add(e);
     }
 
     @Override
