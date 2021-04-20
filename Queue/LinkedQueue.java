@@ -33,6 +33,14 @@ public class LinkedQueue<E> implements QueueInterface<E> {
     public int getSize() {
         return list.getSize();
     }
+    
+    public boolean contains(E e) {
+        return list.contains(e);
+    }
+
+    public boolean isEmpty() {
+        return list.getSize() == 0;
+    }
 
     @Override
     public String toString() {
