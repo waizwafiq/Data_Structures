@@ -32,6 +32,10 @@ public class Queue<T> implements QueueInterface<T> {
     public E getElement(int index) {
         return list.get(index);
     }
+    
+    public E peek() {
+        return list.getFirst();
+    }
 
     @Override
     public int getSize() {
