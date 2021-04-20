@@ -5,6 +5,13 @@ public class LinkedQueue<E> implements QueueInterface<E> {
     public LinkedQueue() {
         list = new LL<>();
     }
+    
+    public LinkedQueue(E[] e){
+        list = new LL<>();
+
+        for(E elem: e)
+            enqueue(elem);
+    }
 
     @Override
     public void enqueue(E e) {
