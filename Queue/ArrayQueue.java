@@ -96,7 +96,11 @@ public class ArrayQueue<E> implements QueueInterface<E> {
 
     @Override
     public void reverse() {
-        
-        
+        E[] temp = (E[]) new Object[currentSize];
+
+        for(int i=currentSize, j=0; i<currentSize; i++,j--)
+            temp[j] = array[i];
+
+        array = temp; 
     }
 }
