@@ -82,18 +82,6 @@ public class ArrayQueue<E> implements QueueInterface<E> {
         System.out.println(toString());
     }
 
-    public static void main(String[] args) {
-        ArrayQueue<Integer> q = new ArrayQueue<>();
-        q.enqueue(1);
-        q.enqueue(2);
-        q.enqueue(3);
-        q.enqueue(4);
-
-        q.display();
-        q.dequeue();
-        q.display();
-    }
-
     @Override
     public void reverse() {
         E[] temp = (E[]) new Object[currentSize];
