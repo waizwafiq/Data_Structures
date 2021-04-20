@@ -1,11 +1,19 @@
 import java.util.ArrayList;
 
+//QUEUE + ARRAYLIST
 public class Queue<T> implements QueueInterface<T> {
 
     private ArrayList<T> list;
 
     public Queue() {
         list = new ArrayList<>();
+    }
+    
+    public Queue(E[] e){
+        list = new ArrayList<>();
+
+        for(E elem: e)
+            enqueue(elem);
     }
 
     @Override
@@ -21,9 +29,21 @@ public class Queue<T> implements QueueInterface<T> {
         return dequeued;
     }
 
+    public E getElement(int index) {
+        return list.get(index);
+    }
+
     @Override
     public int getSize() {
         return list.size();
+    }
+    
+    public boolean contains(E e) {
+        return list.contains(e);
+    }
+
+    public boolean isEmpty() {
+        return list.getSize() == 0;
     }
     
     @Override
