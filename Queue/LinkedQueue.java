@@ -5,11 +5,11 @@ public class LinkedQueue<E> implements QueueInterface<E> {
     public LinkedQueue() {
         list = new LL<>();
     }
-    
-    public LinkedQueue(E[] e){
+
+    public LinkedQueue(E[] e) {
         list = new LL<>();
 
-        for(E elem: e)
+        for (E elem : e)
             enqueue(elem);
     }
 
@@ -28,7 +28,7 @@ public class LinkedQueue<E> implements QueueInterface<E> {
     public E getElement(int index) {
         return list.get(index);
     }
-    
+
     public E peek() {
         return list.getFirst();
     }
@@ -37,7 +37,7 @@ public class LinkedQueue<E> implements QueueInterface<E> {
     public int getSize() {
         return list.getSize();
     }
-    
+
     public boolean contains(E e) {
         return list.contains(e);
     }
@@ -53,11 +53,11 @@ public class LinkedQueue<E> implements QueueInterface<E> {
             out += list.get(i) + " | ";
         return out;
     }
-    
+
     public void display() {
         System.out.println(toString());
     }
-    
+
     public void reverse() {
         list.reverse();
     }
