@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-//QUEUE + ARRAYLIST
 public class Queue<T> implements QueueInterface<T> {
 
     private ArrayList<T> list;
@@ -8,11 +7,11 @@ public class Queue<T> implements QueueInterface<T> {
     public Queue() {
         list = new ArrayList<>();
     }
-    
-    public Queue(E[] e){
+
+    public Queue(E[] e) {
         list = new ArrayList<>();
 
-        for(E elem: e)
+        for (E elem : e)
             enqueue(elem);
     }
 
@@ -32,7 +31,7 @@ public class Queue<T> implements QueueInterface<T> {
     public E getElement(int index) {
         return list.get(index);
     }
-    
+
     public E peek() {
         return list.get(0);
     }
@@ -41,7 +40,7 @@ public class Queue<T> implements QueueInterface<T> {
     public int getSize() {
         return list.size();
     }
-    
+
     public boolean contains(E e) {
         return list.contains(e);
     }
@@ -49,7 +48,7 @@ public class Queue<T> implements QueueInterface<T> {
     public boolean isEmpty() {
         return list.getSize() == 0;
     }
-    
+
     @Override
     public String toString() {
         String out = "| ";
@@ -57,11 +56,11 @@ public class Queue<T> implements QueueInterface<T> {
             out += list.get(i) + " | ";
         return out;
     }
-    
+
     public void display() {
         System.out.println(toString());
     }
-    
+
     public void reverse() {
         ArrayList<T> temp = new ArrayList<>();
         for (int i = getSize() - 1; i >= 0; i--)
