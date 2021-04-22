@@ -20,6 +20,11 @@ public class DLL<E> implements LinkedListInterface<E> {
 
     public DLL() {
     }
+    
+    public DLL(E[] arr) {
+        for (E elem : arr)
+            add(elem);
+    }
 
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
@@ -94,6 +99,34 @@ public class DLL<E> implements LinkedListInterface<E> {
             addFirst(e);
         else
             addLast(e);
+    }
+    
+    public void addAllFirst(DLL<E> list2) {
+        /*
+         * l1: 1 <-> 2 <-> 3 
+         * l2: 4 <-> 5 <-> 6
+         * 
+         * l1.addAllFirst(l2) : 4 <-> 5 <-> 6 <-> 1 <-> 2 <-> 3
+         */
+
+         list2.tail.next = this.head;
+         this.head.previous = list2.tail;
+
+         this.head = list2.head;
+    }
+
+    public void addAllLast(DLL<E> list2) {
+        /*
+         * l1: 1 <-> 2 <-> 3 
+         * l2: 4 <-> 5 <-> 6
+         * 
+         * l1.addAllLast(l2) : 1 <-> 2 <-> 3 <-> 4 <-> 5 <-> 6
+         */
+
+         this.tail.next = list2.head;
+         list2.head.previous = this.tail;
+         
+         this.tail = list2.tail;
     }
 
     public E removeFirst() {
