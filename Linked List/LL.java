@@ -8,18 +8,19 @@ public class LL<E> implements LinkedListInterface<E> {
             this.next = null;
             this.element = element;
         }
+
     }
 
     private Node<E> head, tail;
     private int size;
 
-    public LL() {
-    }
-
     public int getSize() {
         return size;
     }
-    
+
+    public LL() {
+    }
+
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
 
@@ -70,7 +71,31 @@ public class LL<E> implements LinkedListInterface<E> {
         else
             addLast(e);
     }
-    
+
+    public void addAllFirst(LL<E> list2) {
+        /*
+         * l1: 1 -> 2 -> 3 
+         * l2: 4 -> 5 -> 6
+         * 
+         * l1.addAllFirst(l2) : 4 -> 5 -> 6 -> 1 -> 2 -> 3
+         */
+
+        list2.tail.next = this.head;
+        this.head = list2.head;
+    }
+
+    public void addAllLast(LL<E> list2) {
+        /*
+        l1:  1 -> 2 -> 3 
+        l2:  4 -> 5 -> 6
+
+        l1.addAllLast(l2) : 1 -> 2 -> 3 -> 4 -> 5 -> 6
+        */
+
+        this.tail.next = list2.head;
+        this.tail = list2.tail;
+    }
+
     public E removeFirst() {
         if (size == 0)
             return null;
@@ -129,12 +154,12 @@ public class LL<E> implements LinkedListInterface<E> {
     }
 
     public boolean contains(E e) {
-        if(size != 0) {
+        if (size != 0) {
             Node<E> current = head;
-            while(current != null){
-                if(current.element.equals(e))
+            while (current != null) {
+                if (current.element.equals(e))
                     return true;
-                
+
                 current = current.next;
             }
         }
@@ -147,7 +172,7 @@ public class LL<E> implements LinkedListInterface<E> {
         else {
             Node<E> current = head;
 
-            for (int i = 0; i < index; i++) //traverse until the index
+            for (int i = 0; i < index; i++) // traverse until the index
                 current = current.next;
 
             return current.element;
@@ -218,11 +243,10 @@ public class LL<E> implements LinkedListInterface<E> {
     }
 
     public void print() {
-        if(head == null){
+        if (head == null) {
             System.out.println("List is empty!");
             return;
         }
-        
         Node<E> current = head;
         while (current.next != null) {
             System.out.print(current.element + " -> ");
@@ -260,7 +284,7 @@ public class LL<E> implements LinkedListInterface<E> {
             // REVERSE THE LINK
             current.next = previous;
             previous = current;
+            head = current;
         }
-        head = current;
     }
 }
