@@ -5,10 +5,3 @@ List of Linked Lists done:
 2. Doubly Linked List (DLL)
 3. Circular Singly Linked List (CLL)
 4. Circular Doubly Linked List (CDLL)
-
-<hr>
-
-I am currently working on:
-1. Documenting (using javadoc) the interface 
-2. 2D Singly Linked List (TLL)
-3. 2D Doubly Linked List (TDLL)
