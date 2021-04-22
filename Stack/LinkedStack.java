@@ -28,6 +28,10 @@ public class LinkedStack<T> implements StackInterface<T> {
     public T peek() {
         return list.getFirst();
     }
+    
+    public T get(int index) {
+        return list.get(index);
+    }
 
     @Override
     public int getSize() {
