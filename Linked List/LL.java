@@ -8,7 +8,6 @@ public class LL<E> implements LinkedListInterface<E> {
             this.next = null;
             this.element = element;
         }
-
     }
 
     private Node<E> head, tail;
@@ -18,7 +17,11 @@ public class LL<E> implements LinkedListInterface<E> {
         return size;
     }
 
-    public LL() {
+    public LL() {}
+    
+    public LL(E[] arr) {
+        for(E elem: arr)
+            add(elem);
     }
 
     public void addFirst(E e) {
