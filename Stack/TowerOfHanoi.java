@@ -1,22 +1,24 @@
+package week6.L;
+
 /**
-In this game, there are only three towers:
-      i) The source
-     ii) The auxiliary (aux)
-    iii) The destination (dest)
-
-Algorithm:
-    To win this game optimally, we have to place the bottom disk (disk 3) on the destination tower.
-    To do so, we have to place other disks (disk 1 & 2) on the auxiliary tower first.
-    Then we place the bottom disk (disk 3) on the destination tower.
-    Finally, we have to place all of the other disks (disk 1 & 2) on the destination tower.
-
-@author Waiz Wafiq
+ * In this game, there are only three towers:
+ * i) The source
+ * ii) The auxiliary (aux)
+ * iii) The destination (dest)
+ * <p>
+ * Algorithm:
+ * To win this game optimally, we have to place the bottom disk (disk 3) on the destination tower.
+ * To do so, we have to place other disks (disk 1 & 2) on the auxiliary tower first.
+ * Then we place the bottom disk (disk 3) on the destination tower.
+ * Finally, we have to place all of the other disks (disk 1 & 2) on the destination tower.
+ *
+ * @author Waiz Wafiq
  */
-public class TowerOfHanoi {
+class TowerOfHanoi {
 
     //SETTINGS
     private static MyStack<Integer>[] tower = new MyStack[3];
-    private static int numberOfDisks = 3;
+    private static final int numberOfDisks = 5;
 
     public static void main(String[] args) {
 
@@ -41,8 +43,28 @@ public class TowerOfHanoi {
             int takenDisk = tower[source].pop();
             tower[dest].push(takenDisk);
             System.out.println("Moved disk " + takenDisk + " from tower " + (source + 1) + " to tower " + (dest + 1));
-
+            display();
             moveDisk(disk - 1, aux, source, dest); //moving (disk-1) disks from auxiliary to destination
         }
+    }
+
+    public static void display() {
+        System.out.println("‐‐‐‐‐‐‐‐‐‐-");
+        System.out.println(" A | B | C");
+        System.out.println("‐‐‐‐‐‐‐‐‐‐‐");
+        for (int i = numberOfDisks - 1; i >= 0; i--) {
+            String d1 = " ", d2 = " ", d3 = " ";
+            try {
+                d1 = String.valueOf(tower[0].get(i));
+            } catch (Exception e) { }
+            try {
+                d2 = String.valueOf(tower[1].get(i));
+            } catch (Exception e) { }
+            try {
+                d3 = String.valueOf(tower[2].get(i));
+            } catch (Exception e) { }
+            System.out.println(" " + d1 + " | " + d2 + " | " + d3);
+        }
+        System.out.println("\n");
     }
 }
