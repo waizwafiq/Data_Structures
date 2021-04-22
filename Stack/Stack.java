@@ -35,6 +35,10 @@ public class Stack<T> implements StackInterface<T> {
         T peeked = list.get(getSize() - 1);
         return peeked;
     }
+    
+    public T get(int index) {
+        return list.get(index);
+    }
 
     @Override
     public int getSize() {
