@@ -32,8 +32,7 @@ public class Stack<T> implements StackInterface<T> {
         if (isEmpty())
             throw new EmptyStackException();
 
-        T peeked = list.get(getSize() - 1);
-        return peeked;
+        return list.get(getSize() - 1);
     }
     
     public T get(int index) {
