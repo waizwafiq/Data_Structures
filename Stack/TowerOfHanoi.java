@@ -17,7 +17,7 @@ package week6.L;
 class TowerOfHanoi {
 
     //SETTINGS
-    private static MyStack<Integer>[] tower = new MyStack[3];
+    private static Stack<Integer>[] tower = new Stack[3];
     private static final int numberOfDisks = 5;
 
     public static void main(String[] args) {
