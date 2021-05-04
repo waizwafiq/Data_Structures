@@ -94,30 +94,28 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     }
 
     public int getInDeg(T vertexInfo) {
-        if (hasVertex(vertexInfo)) {
-            Vertex<T, N> temp = head; // starting from the head of the graph
+        Vertex<T, N> temp = head; // starting from the head of the graph
 
-            while (temp != null) { // traverse until the final vertex
-                if (temp.vertexInfo.compareTo(vertexInfo) == 0)
-                    return temp.indeg; // if the vertex is found, return the indeg value;
+        while (temp != null) { // traverse until the final vertex
+            if (temp.vertexInfo.compareTo(vertexInfo) == 0)
+                return temp.indeg; // if the vertex is found, return the indeg value;
 
-                temp = temp.nextVertex;
-            }
+            temp = temp.nextVertex;
         }
+
         return -1; // not found
     }
 
     public int getOutDeg(T vertexInfo) {
-        if (hasVertex(vertexInfo)) {
-            Vertex<T, N> temp = head; // starting from the head of the graph
+        Vertex<T, N> temp = head; // starting from the head of the graph
 
-            while (temp != null) { // traverse until the final vertex
-                if (temp.vertexInfo.compareTo(vertexInfo) == 0)
-                    return temp.outdeg; // if the vertex is found, return the outdeg value;
+        while (temp != null) { // traverse until the final vertex
+            if (temp.vertexInfo.compareTo(vertexInfo) == 0)
+                return temp.outdeg; // if the vertex is found, return the outdeg value;
 
-                temp = temp.nextVertex;
-            }
+            temp = temp.nextVertex;
         }
+
         return -1; // not found
     }
 
