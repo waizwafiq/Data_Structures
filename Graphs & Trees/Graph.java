@@ -81,8 +81,8 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
                 // traverse until it reaches the source vertex
                 Edge<T, N> currentEdge = sourceVertex.firstEdge;
                 while (currentEdge != null) {
+                    //go through all of the edges (outDegs) from the source vertex
                     if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) {
-                        // traverse from source vertex until destination vertex
                         return true;
                     }
 
@@ -164,7 +164,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
                         Edge<T, N> currentEdge = sourceVertex.firstEdge;
                         Edge<T, N> newEdge = new Edge<>(destinationVertex, weight, currentEdge);
 
-                        sourceVertex.firstEdge = newEdge;
+                        sourceVertex.firstEdge = newEdge; //add the new edge connected from the source vertex to destination vertex
                         sourceVertex.outdeg++;
                         destinationVertex.indeg++;
                         return true;
@@ -191,7 +191,8 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             if (sourceVertex.vertexInfo.compareTo(sourceInfo) == 0) {
                 Edge<T, N> currentEdge = sourceVertex.firstEdge;
                 while (currentEdge != null) {
-                    if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) //traverse until destination vertex
+                    //go through all of the edges (outDegs) from the source vertex
+                    if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) //if there's an edge connecting to destination vertex
                         return currentEdge.weight;
 
                     currentEdge = currentEdge.nextEdge;
@@ -216,6 +217,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
                 Edge<T,N> currentEdge = temp.firstEdge;
 
                 while(currentEdge != null){
+                    //go through all of the edges (outDegs) from the given vertex
                     neighbours.add(currentEdge.toVertex.vertexInfo);
                     currentEdge = currentEdge.nextEdge;
                 }
