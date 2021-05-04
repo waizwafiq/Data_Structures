@@ -59,12 +59,12 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         if (head == null) // if the graph is empty
             return false;
 
-        Vertex<T, N> temp = head; // starting from the head of the graph
-        while (temp != null) { // traverse until the final vertex
-            if (temp.vertexInfo.compareTo(vertexInfo) == 0)
+        Vertex<T, N> currentVertex = head; // starting from the head of the graph
+        while (currentVertex != null) { // traverse until the final vertex
+            if (currentVertex.vertexInfo.compareTo(vertexInfo) == 0)
                 return true; // but if the vertex is found, return true
 
-            temp = temp.nextVertex;
+            currentVertex = currentVertex.nextVertex;
         }
         return false;
     }
@@ -81,7 +81,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
                 // traverse until it reaches the source vertex
                 Edge<T, N> currentEdge = sourceVertex.firstEdge;
                 while (currentEdge != null) {
-                    //go through all of the edges (outDegs) from the source vertex
+                    // go through all of the edges (outDegs) from the source vertex
                     if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) {
                         return true;
                     }
@@ -96,26 +96,26 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     }
 
     public int getInDeg(T vertexInfo) {
-        Vertex<T, N> temp = head; // starting from the head of the graph
+        Vertex<T, N> currentVertex = head; // starting from the head of the graph
 
-        while (temp != null) { // traverse until the final vertex
-            if (temp.vertexInfo.compareTo(vertexInfo) == 0)
-                return temp.indeg; // if the vertex is found, return the indeg value;
+        while (currentVertex != null) { // traverse until the final vertex
+            if (currentVertex.vertexInfo.compareTo(vertexInfo) == 0)
+                return currentVertex.indeg; // if the vertex is found, return the indeg value;
 
-            temp = temp.nextVertex;
+            currentVertex = currentVertex.nextVertex;
         }
 
         return -1; // not found
     }
 
     public int getOutDeg(T vertexInfo) {
-        Vertex<T, N> temp = head; // starting from the head of the graph
+        Vertex<T, N> currentVertex = head; // starting from the head of the graph
 
-        while (temp != null) { // traverse until the final vertex
-            if (temp.vertexInfo.compareTo(vertexInfo) == 0)
-                return temp.outdeg; // if the vertex is found, return the outdeg value;
+        while (currentVertex != null) { // traverse until the final vertex
+            if (currentVertex.vertexInfo.compareTo(vertexInfo) == 0)
+                return currentVertex.outdeg; // if the vertex is found, return the outdeg value;
 
-            temp = temp.nextVertex;
+            currentVertex = currentVertex.nextVertex;
         }
 
         return -1; // not found
@@ -123,7 +123,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public boolean addVertex(T vertexInfo) {
         if (!hasVertex(vertexInfo)) {
-            Vertex<T, N> temp = head; // starting from head vertex
+            Vertex<T, N> currentVertex = head; // starting from head vertex
 
             Vertex<T, N> newVertex = new Vertex<>(vertexInfo, null);
 
@@ -132,10 +132,10 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
                 head = newVertex;
             } else {
                 // if the graph is not empty
-                while (temp.nextVertex != null) // traverse until temp is the final vertex
-                    temp = temp.nextVertex;
+                while (currentVertex.nextVertex != null) // traverse until currentVertex is the final vertex
+                    currentVertex = currentVertex.nextVertex;
 
-                temp.nextVertex = newVertex; // add the new vertex next to the final vertex
+                currentVertex.nextVertex = newVertex; // add the new vertex next to the final vertex
                 // the new vertex is going to be the new final vertex
             }
             size++; // increase the number of vertices in the graph
@@ -164,7 +164,8 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
                         Edge<T, N> currentEdge = sourceVertex.firstEdge;
                         Edge<T, N> newEdge = new Edge<>(destinationVertex, weight, currentEdge);
 
-                        sourceVertex.firstEdge = newEdge; //add the new edge connected from the source vertex to destination vertex
+                        sourceVertex.firstEdge = newEdge; // add the new edge connected from the source vertex to
+                                                          // destination vertex
                         sourceVertex.outdeg++;
                         destinationVertex.indeg++;
                         return true;
@@ -191,8 +192,10 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             if (sourceVertex.vertexInfo.compareTo(sourceInfo) == 0) {
                 Edge<T, N> currentEdge = sourceVertex.firstEdge;
                 while (currentEdge != null) {
-                    //go through all of the edges (outDegs) from the source vertex
-                    if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) //if there's an edge connecting to destination vertex
+                    // go through all of the edges (outDegs) from the source vertex
+                    if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) // if there's an edge
+                                                                                         // connecting to destination
+                                                                                         // vertex
                         return currentEdge.weight;
 
                     currentEdge = currentEdge.nextEdge;
@@ -204,27 +207,45 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return null;
     }
 
-    public ArrayList<T> getNeighbours(T vertexInfo){
-        if(!hasVertex(vertexInfo))
+    public ArrayList<T> getNeighbours(T vertexInfo) {
+        if (!hasVertex(vertexInfo))
             return null;
 
         ArrayList<T> neighbours = new ArrayList<>();
 
-        Vertex<T,N> temp = head;
-        while(temp != null){
-            if(temp.vertexInfo.compareTo(vertexInfo) == 0){
-                //traverse until given vertex
-                Edge<T,N> currentEdge = temp.firstEdge;
+        Vertex<T, N> currentVertex = head;
+        while (currentVertex != null) {
+            if (currentVertex.vertexInfo.compareTo(vertexInfo) == 0) {
+                // traverse until given vertex
+                Edge<T, N> currentEdge = currentVertex.firstEdge;
 
-                while(currentEdge != null){
-                    //go through all of the edges (outDegs) from the given vertex
+                while (currentEdge != null) {
+                    // go through all of the edges (outDegs) from the given vertex
                     neighbours.add(currentEdge.toVertex.vertexInfo);
                     currentEdge = currentEdge.nextEdge;
                 }
             }
 
-            temp = temp.nextVertex;
+            currentVertex = currentVertex.nextVertex;
         }
         return neighbours;
+    }
+
+    public void printEdges() {
+        Vertex<T, N> currentVertex = head;
+        while (currentVertex != null) {
+            System.out.print("# " + currentVertex.vertexInfo + " : ");
+            Edge<T, N> currentEdge = currentVertex.firstEdge;
+
+            while (currentEdge != null) {
+                // go through all the edges from current vertex
+                System.out.print("[" + currentVertex.vertexInfo + ", " + currentEdge.toVertex.vertexInfo + "]");
+                
+                currentEdge = currentEdge.nextEdge;
+            }
+            System.out.println();
+
+            currentVertex = currentVertex.nextVertex;
+        }
     }
 }
