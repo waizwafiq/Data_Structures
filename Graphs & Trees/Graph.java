@@ -67,6 +67,30 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return false;
     }
 
+    public boolean hasEdge(T sourceInfo, T destinationInfo){
+        if(head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo)) //if the graph is empty OR the source and destination vertices don't exist
+            return false;
+
+        Vertex<T,N> sourceVertex = head;
+        while(sourceVertex != null) {
+            if(sourceVertex.vertexInfo.compareTo(sourceInfo) == 0){
+                //traverse until it reaches the source vertex
+                Edge<T,N> currentEdge = sourceVertex.firstEdge;
+                while(currentEdge != null){
+                    if(currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0){
+                        //traverse from source vertex until destination vertex
+                        return true;
+                    }
+            
+                    currentEdge = currentEdge.nextEdge;
+                }
+            }
+
+            sourceVertex = sourceVertex.nextVertex;
+        }
+        return false;
+    }
+
     public int getInDeg(T vertexInfo) {
         if (hasVertex(vertexInfo)) {
             Vertex<T, N> temp = head; // starting from the head of the graph
@@ -110,6 +134,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
                     temp = temp.nextVertex;
 
                 temp.nextVertex = newVertex; // add the new vertex next to the final vertex
+                //the new vertex is going to be the new final vertex
             }
             size++; // increase the number of vertices in the graph
             return true;
