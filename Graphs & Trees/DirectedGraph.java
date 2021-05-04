@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
+public class DirectedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
     private class Vertex<T extends Comparable<T>, N extends Comparable<N>> {
         private T vertexInfo;
@@ -45,7 +45,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     private Vertex<T, N> head;
     private int size;
 
-    public Graph() {
+    public DirectedGraph() {
         head = null;
         size = 0;
     }
@@ -239,7 +239,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
 
             while (currentEdge != null) {
                 // go through all the edges from current vertex
-                System.out.print("[" + currentVertex.vertexInfo + ", " + currentEdge.toVertex.vertexInfo + "]");
+                System.out.print("[" + currentVertex.vertexInfo + " --"+currentEdge.weight+"--> " + currentEdge.toVertex.vertexInfo + "]");
                 
                 currentEdge = currentEdge.nextEdge;
             }
