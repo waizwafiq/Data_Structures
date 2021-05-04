@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
 
     private class Vertex<T extends Comparable<T>, N extends Comparable<N>> {
@@ -175,5 +177,52 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             sourceVertex = sourceVertex.nextVertex;
         }
         return false;
+    }
+
+    public N getEdgeWeight(T sourceInfo, T destinationInfo) {
+        if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo)) // if the graph is empty OR the
+                                                                                   // source and destination vertices
+                                                                                   // don't exist
+            return null;
+
+        Vertex<T, N> sourceVertex = head;
+        while (sourceVertex != null) {
+            // traverse until it reaches the source vertex
+            if (sourceVertex.vertexInfo.compareTo(sourceInfo) == 0) {
+                Edge<T, N> currentEdge = sourceVertex.firstEdge;
+                while (currentEdge != null) {
+                    if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) //traverse until destination vertex
+                        return currentEdge.weight;
+
+                    currentEdge = currentEdge.nextEdge;
+                }
+            }
+
+            sourceVertex = sourceVertex.nextVertex;
+        }
+        return null;
+    }
+
+    public ArrayList<T> getNeighbours(T vertexInfo){
+        if(!hasVertex(vertexInfo))
+            return null;
+
+        ArrayList<T> neighbours = new ArrayList<>();
+
+        Vertex<T,N> temp = head;
+        while(temp != null){
+            if(temp.vertexInfo.compareTo(vertexInfo) == 0){
+                //traverse until given vertex
+                Edge<T,N> currentEdge = temp.firstEdge;
+
+                while(currentEdge != null){
+                    neighbours.add(currentEdge.toVertex.vertexInfo);
+                    currentEdge = currentEdge.nextEdge;
+                }
+            }
+
+            temp = temp.nextVertex;
+        }
+        return neighbours;
     }
 }
