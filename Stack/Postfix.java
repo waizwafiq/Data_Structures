@@ -1,7 +1,6 @@
 /**
  * POSTFIX EVALUATION
  */
-
 import java.util.Stack;
 
 public class Postfix {
@@ -16,7 +15,7 @@ public class Postfix {
             if (exp.equals("("))
                 operators.push(exp);
             else if (isNumeric(exp) || isAlphabet(exp.charAt(0)))
-                postfix.push(exp);
+                postfix.push(" "+ exp+" ");
             else if (exp.equals(")")) {
                 while (!operators.peek().equals("(")) {
                     //LOOP WHILE THERE'S NO "(" FOUND
@@ -50,7 +49,7 @@ public class Postfix {
 
             postfix.push(new_postfix);
         }
-        return postfix.pop();
+        return postfix.pop().trim().replaceAll("\\s", " ");
     }
 
     public static double evaluate(String postfix) {
@@ -101,11 +100,11 @@ public class Postfix {
         double result;
 
         switch (sym) {
-            case "+" -> result = num1 + num2;
-            case "-" -> result = num1 - num2;
-            case "*" -> result = num1 * num2;
-            case "/" -> result = num1 / num2;
-            case "^" -> result = Math.pow(num1, num2);
+            case "+" -> result = num2 + num1;
+            case "-" -> result = num2 - num1;
+            case "*" -> result = num2 * num1;
+            case "/" -> result = num2 / num1;
+            case "^" -> result = Math.pow(num2, num1);
             default -> result = 0;
         }
         return result;
