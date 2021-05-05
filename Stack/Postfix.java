@@ -1,6 +1,7 @@
 /**
  * POSTFIX EVALUATION
  */
+
 import java.util.Stack;
 
 public class Postfix {
@@ -10,7 +11,7 @@ public class Postfix {
         Stack<String> postfix = new Stack<>(); //the type is String to build the postfix string easier.
         String[] expressions = infix.split(" ");
 
-        for (String exp: expressions) {
+        for (String exp : expressions) {
 
             if (exp.equals("("))
                 operators.push(exp);
@@ -51,7 +52,7 @@ public class Postfix {
         }
         return postfix.pop();
     }
-    
+
     public static double evaluate(String postfix) {
         Stack<Double> stack = new Stack<>();
 
@@ -68,7 +69,7 @@ public class Postfix {
 
         return stack.peek();
     }
-    
+
     private static int precedence(char c) {
         //2 is more significant than 1
         if (c == '+' || c == '-')
@@ -100,12 +101,12 @@ public class Postfix {
         double result;
 
         switch (sym) {
-        case "+" -> result = num1 + num2;
-        case "-" -> result = num1 - num2;
-        case "*" -> result = num1 * num2;
-        case "/" -> result = num1 / num2;
-        case "^" -> result = Math.pow(num1, num2);
-        default -> result = 0;
+            case "+" -> result = num1 + num2;
+            case "-" -> result = num1 - num2;
+            case "*" -> result = num1 * num2;
+            case "/" -> result = num1 / num2;
+            case "^" -> result = Math.pow(num1, num2);
+            default -> result = 0;
         }
         return result;
     }
