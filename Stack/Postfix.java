@@ -15,7 +15,7 @@ public class Postfix {
             if (exp.equals("("))
                 operators.push(exp);
             else if (isNumeric(exp) || isAlphabet(exp.charAt(0)))
-                postfix.push(" "+ exp+" ");
+                postfix.push(" " + exp + " ");
             else if (exp.equals(")")) {
                 while (!operators.peek().equals("(")) {
                     //LOOP WHILE THERE'S NO "(" FOUND
@@ -37,7 +37,7 @@ public class Postfix {
 
                     postfix.push(new_postfix);
                 }
-                operators.push(exp);
+                operators.push(exp + " ");
             }
         }
 
