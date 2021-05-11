@@ -1,5 +1,3 @@
-package week6.L;
-
 /**
  * In this game, there are only three towers:
  * i) The source
@@ -14,6 +12,7 @@ package week6.L;
  *
  * @author Waiz Wafiq
  */
+
 class TowerOfHanoi {
 
     //SETTINGS
@@ -24,7 +23,7 @@ class TowerOfHanoi {
 
         //CREATE TOWERS
         for (int i = 0; i < tower.length; i++)
-            tower[i] = new MyStack<>();
+            tower[i] = new Stack<>();
 
         //PLACE ALL OF THE DISKS AT TOWER 1
         for (int i = numberOfDisks; i >= 1; i--)
