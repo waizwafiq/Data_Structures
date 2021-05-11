@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class DirectedGraph<T extends Comparable<T>, N extends Comparable<N>> {
+public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
     private class Vertex<T extends Comparable<T>, N extends Comparable<N>> {
         private T vertexInfo;
@@ -45,7 +45,7 @@ public class DirectedGraph<T extends Comparable<T>, N extends Comparable<N>> {
     private Vertex<T, N> head;
     private int size;
 
-    public DirectedGraph() {
+    public WeightedGraph() {
         head = null;
         size = 0;
     }
