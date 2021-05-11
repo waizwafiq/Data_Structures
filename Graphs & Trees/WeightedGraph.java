@@ -4,75 +4,64 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
     private class Vertex<T extends Comparable<T>, N extends Comparable<N>> {
         private T vertexInfo;
-        private int indeg, outdeg;
-        private Vertex<T, N> nextVertex; // reference to next vertex/node
-        private Edge<T, N> firstEdge; // reference to the first edge node
+        private int indeg, outdeg; //the number of in-degrees and out-degrees
+        private Vertex<T, N> nextVertex; //reference to the next vertex
+        private Edge<T, N> firstEdge; //reference to the first edge node
 
         public Vertex() {
-            vertexInfo = null;
-            indeg = outdeg = 0;
-            nextVertex = null;
-            firstEdge = null;
         }
 
         public Vertex(T vertexInfo, Vertex<T, N> nextVertex) {
             this.vertexInfo = vertexInfo;
-            indeg = outdeg = 0;
             this.nextVertex = nextVertex;
-            firstEdge = null;
         }
-
     }
 
     private class Edge<T extends Comparable<T>, N extends Comparable<N>> {
-        private Vertex<T, N> toVertex;
-        private N weight;
-        private Edge<T, N> nextEdge;
+        private Vertex<T, N> toVertex; //the vertex the edge points to
+        private N weight; //the weight of this edge
+        private Edge<T, N> nextEdge; //the next edge node after this (from the same source)
 
         public Edge() {
-            toVertex = null;
-            weight = null;
-            nextEdge = null;
         }
 
-        public Edge(Vertex<T, N> destination, N weight, Edge<T, N> nextEdge) {
-            this.toVertex = destination;
+        public Edge(Vertex<T, N> toVertex, N weight, Edge<T, N> nextEdge) {
+            this.toVertex = toVertex;
             this.weight = weight;
             this.nextEdge = nextEdge;
         }
     }
 
-    private Vertex<T, N> head;
-    private int size;
+    private Vertex<T, N> head; //the head of the graph
+    private int size; //the number of vertices in the graph G<V,E>
 
     public WeightedGraph() {
-        head = null;
-        size = 0;
     }
 
     public int getSize() {
-        // get the number of vertices in the graph
+        //returns the number of vertices in the graph
         return size;
     }
 
     public boolean hasVertex(T vertexInfo) {
-        if (head == null) // if the graph is empty
+        //checks if the vertex exists (based on the given element)
+        if (head == null) //if the graph is empty
             return false;
 
-        Vertex<T, N> currentVertex = head; // starting from the head of the graph
-        while (currentVertex != null) { // traverse until the final vertex
+        Vertex<T, N> currentVertex = head; //starting from head
+        while (currentVertex != null) { //traverse the vertex nodes
             if (currentVertex.vertexInfo.compareTo(vertexInfo) == 0)
-                return true; // but if the vertex is found, return true
+                return true;
 
-            currentVertex = currentVertex.nextVertex;
+            currentVertex = currentVertex.nextVertex; //go to the next vertex node
         }
+
         return false;
     }
 
     public boolean hasEdge(T sourceInfo, T destinationInfo) {
-        if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo)) // if the graph is empty OR the
-                                                                                   // source and destination vertices
-                                                                                   // don't exist
+        if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo))
+            //if the graph is empty OR the source and destination vertices don't exist
             return false;
 
         Vertex<T, N> sourceVertex = head;
@@ -146,8 +135,8 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public boolean addEdge(T sourceInfo, T destinationInfo, N weight) {
         if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo)) // if the graph is empty OR the
-                                                                                   // source and destination vertices
-                                                                                   // don't exist
+            // source and destination vertices
+            // don't exist
             return false;
 
         Vertex<T, N> sourceVertex = head;
@@ -165,7 +154,7 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
                         Edge<T, N> newEdge = new Edge<>(destinationVertex, weight, currentEdge);
 
                         sourceVertex.firstEdge = newEdge; // add the new edge connected from the source vertex to
-                                                          // destination vertex
+                        // destination vertex
                         sourceVertex.outdeg++;
                         destinationVertex.indeg++;
                         return true;
@@ -182,8 +171,8 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public N getEdgeWeight(T sourceInfo, T destinationInfo) {
         if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo)) // if the graph is empty OR the
-                                                                                   // source and destination vertices
-                                                                                   // don't exist
+            // source and destination vertices
+            // don't exist
             return null;
 
         Vertex<T, N> sourceVertex = head;
@@ -194,8 +183,8 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
                 while (currentEdge != null) {
                     // go through all of the edges (outDegs) from the source vertex
                     if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) // if there's an edge
-                                                                                         // connecting to destination
-                                                                                         // vertex
+                        // connecting to destination
+                        // vertex
                         return currentEdge.weight;
 
                     currentEdge = currentEdge.nextEdge;
@@ -239,8 +228,8 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
             while (currentEdge != null) {
                 // go through all the edges from current vertex
-                System.out.print("[" + currentVertex.vertexInfo + " --"+currentEdge.weight+"--> " + currentEdge.toVertex.vertexInfo + "]");
-                
+                System.out.print("[" + currentVertex.vertexInfo + " --" + currentEdge.weight + "--> " + currentEdge.toVertex.vertexInfo + "]");
+
                 currentEdge = currentEdge.nextEdge;
             }
             System.out.println();
