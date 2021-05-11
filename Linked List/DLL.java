@@ -197,7 +197,23 @@ public class DLL<E> implements LinkedListInterface<E> {
         }
         return null;
     }
-    
+
+    public boolean contains(E e) {
+        if (size != 0) {
+            Node<E> current = head;
+
+            if (tail.element.equals(e)) //the loop will skip when current node reaches the tail node. (need improvement here if possible)
+                return true;
+            while (current != tail) {
+                if (current.element.equals(e))
+                    return true;
+
+                current = current.next;
+            }
+        }
+        return false;
+    }
+
     public E get(int index) {
         if (size == 0 || index < 0 || index >= size) {
             return null;
