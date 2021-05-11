@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class Queue<T> implements QueueInterface<T> {
+public class Queue<E> implements QueueInterface<E> {
 
-    private ArrayList<T> list;
+    private ArrayList<E> list;
 
     public Queue() {
         list = new ArrayList<>();
@@ -16,13 +16,13 @@ public class Queue<T> implements QueueInterface<T> {
     }
 
     @Override
-    public void enqueue(T e) {
+    public void enqueue(E e) {
         list.add(e);
     }
 
     @Override
-    public T dequeue() {
-        T dequeued = list.get(0);
+    public E dequeue() {
+        E dequeued = list.get(0);
         list.remove(0);
 
         return dequeued;
@@ -46,7 +46,7 @@ public class Queue<T> implements QueueInterface<T> {
     }
 
     public boolean isEmpty() {
-        return list.getSize() == 0;
+        return getSize() == 0;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Queue<T> implements QueueInterface<T> {
     }
 
     public void reverse() {
-        ArrayList<T> temp = new ArrayList<>();
+        ArrayList<E> temp = new ArrayList<>();
         for (int i = getSize() - 1; i >= 0; i--)
             temp.add(list.get(i));
 
