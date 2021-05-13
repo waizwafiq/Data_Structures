@@ -380,5 +380,17 @@ public class UnweightedGraph<T extends Comparable<T>> {
                 if (!v.isVisited())
                     frontier.enqueue(v);
         }
+
+        //unvisit all vertices after traversal search (to avoid errors on other algorithms)
+        unvisitAll();
+    }
+
+    public void unvisitAll() {
+        Vertex<T> currentVertex = head;
+
+        while (currentVertex != null) {
+            currentVertex.unvisit();
+            currentVertex = currentVertex.nextVertex;
+        }
     }
 }
