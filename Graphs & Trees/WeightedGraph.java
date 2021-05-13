@@ -89,8 +89,8 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
     }
 
     public boolean hasEdge(T sourceInfo, T destinationInfo) {
-        if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo))
-            //if the graph is empty OR the source and destination vertices don't exist
+        if (head == null)
+            //if the graph is empty
             return false;
 
         Vertex<T, N> sourceVertex = head;
