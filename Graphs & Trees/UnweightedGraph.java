@@ -7,13 +7,24 @@ public class UnweightedGraph<T extends Comparable<T>> {
         private int indeg, outdeg; //the number of in-degrees and out-degrees
         private Vertex<T> nextVertex; //reference to the next vertex
         private Edge<T> firstEdge; //reference to the first edge node
+        private boolean visited;
 
         public Vertex() {
+            this.visited = false;
         }
 
         public Vertex(T vertexInfo, Vertex<T> nextVertex) {
             this.vertexInfo = vertexInfo;
             this.nextVertex = nextVertex;
+        }
+
+        public T visit() {
+            this.visited = true;
+            return vertexInfo;
+        }
+
+        public boolean isVisited() {
+            return visited;
         }
     }
 
@@ -43,6 +54,10 @@ public class UnweightedGraph<T extends Comparable<T>> {
 
     public T getHead() {
         return head.vertexInfo;
+    }
+
+    public Vertex<T> getHeadVertex() {
+        return head;
     }
 
     public boolean hasVertex(T vertexInfo) {
@@ -288,6 +303,30 @@ public class UnweightedGraph<T extends Comparable<T>> {
         return neighbours;
     }
 
+    public ArrayList<Vertex<T>> getNeighboursVertices(Vertex<T> vertex) {
+        if (!hasVertex(vertex.vertexInfo))
+            return null;
+
+        ArrayList<Vertex<T>> neighbours = new ArrayList<>();
+
+        Vertex<T> currentVertex = head;
+        while (currentVertex != null) {
+            if (currentVertex.vertexInfo.compareTo(vertex.vertexInfo) == 0) {
+                // traverse until given vertex
+                Edge<T> currentEdge = currentVertex.firstEdge;
+
+                while (currentEdge != null) {
+                    // go through all of the edges (outDegs) from the given vertex
+                    neighbours.add(currentEdge.toVertex); //add the vertex (NOT THE VERTEXINFO)
+                    currentEdge = currentEdge.nextEdge;
+                }
+            }
+
+            currentVertex = currentVertex.nextVertex;
+        }
+        return neighbours;
+    }
+
     public void printEdges() {
         Vertex<T> currentVertex = head;
         while (currentVertex != null) {
@@ -306,7 +345,36 @@ public class UnweightedGraph<T extends Comparable<T>> {
         }
     }
 
-    public void BreadthFirstSearch(Vertex<T> vertex) {
+    public void BreadthFirstSearch(Vertex<T> startVertex) {
+        if (startVertex == null || head == null)
+            return;
+
+        //Breadth-First Search uses FIFO protocol in the frontier.
+        Queue<Vertex<T>> frontier = new Queue<>();
+        frontier.enqueue(startVertex);
+
+        while (!frontier.isEmpty()) {
+            Vertex<T> currentVertex = frontier.dequeue();
+
+            //check if the vertex in the frontier has been visited
+            if (currentVertex.isVisited())
+                continue;
+
+            //if not, visit it
+            System.out.print(currentVertex.visit() + " ");
+
+            //get the current vertex's neighbours
+            ArrayList<Vertex<T>> neighbours = getNeighboursVertices(currentVertex);
+
+            //if there's no neighbours, skip
+            if (neighbours == null)
+                continue;
+
+            //enqueue all neighbours into the frontier
+            for (Vertex<T> v : neighbours)
+                if (!v.isVisited())
+                    frontier.enqueue(v);
+        }
 
     }
 }
