@@ -23,6 +23,11 @@ public class UnweightedGraph<T extends Comparable<T>> {
             return vertexInfo;
         }
 
+        public T unvisit() {
+            this.visited = false;
+            return vertexInfo;
+        }
+
         public boolean isVisited() {
             return visited;
         }
@@ -375,6 +380,5 @@ public class UnweightedGraph<T extends Comparable<T>> {
                 if (!v.isVisited())
                     frontier.enqueue(v);
         }
-
     }
 }
