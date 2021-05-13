@@ -180,6 +180,14 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
         return false;
     }
 
+    public boolean addEdges(Object[][] edges) {
+        boolean result = false;
+        for (Object[] e : edges)
+            result = addEdge((T) e[0], (T) e[1], (N) e[2]);
+
+        return result;
+    }
+
     public boolean addUndirectedEdge(T sourceInfo, T destinationInfo, N weight) {
         if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo))
             //if the graph is empty OR the source and destination vertices don't exist
@@ -222,6 +230,14 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
             sourceVertex = sourceVertex.nextVertex;
         }
         return false;
+    }
+
+    public boolean addUndirectedEdges(Object[][] undirEdges) {
+        boolean result = false;
+        for (Object[] e : undirEdges)
+            result = addUndirectedEdge((T) e[0], (T) e[1], (N) e[2]);
+
+        return result;
     }
 
     public boolean removeEdge(T sourceInfo, T destinationInfo) {
