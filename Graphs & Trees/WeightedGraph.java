@@ -43,6 +43,10 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
         return size;
     }
 
+    public T getHead() {
+        return head.vertexInfo;
+    }
+
     public boolean hasVertex(T vertexInfo) {
         //checks if the vertex exists (based on the given element)
         if (head == null) //if the graph is empty
@@ -133,10 +137,17 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
             return false;
     }
 
+    public boolean addVertices(T[] verticesInfo) {
+        boolean result = false;
+        for (T v : verticesInfo)
+            result = addVertex(v);
+
+        return result;
+    }
+
     public boolean addEdge(T sourceInfo, T destinationInfo, N weight) {
-        if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo)) // if the graph is empty OR the
-            // source and destination vertices
-            // don't exist
+        if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo))
+            //if the graph is empty OR the source and destination vertices don't exist
             return false;
 
         Vertex<T, N> sourceVertex = head;
@@ -167,6 +178,76 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
             sourceVertex = sourceVertex.nextVertex;
         }
         return false;
+    }
+
+    public boolean addUndirectedEdge(T sourceInfo, T destinationInfo, N weight) {
+        if (head == null || !hasVertex(sourceInfo) || !hasVertex(destinationInfo))
+            //if the graph is empty OR the source and destination vertices don't exist
+            return false;
+
+        Vertex<T, N> sourceVertex = head;
+
+        while (sourceVertex != null) {
+            if (sourceVertex.vertexInfo.compareTo(sourceInfo) == 0) {
+                // traverse until it reaches the source vertex
+                // search for destination vertex
+                Vertex<T, N> destinationVertex = head;
+
+                while (destinationVertex != null) {
+                    if (destinationVertex.vertexInfo.compareTo(destinationInfo) == 0) {
+                        // traverse until destination vertex
+                        Edge<T, N> currentEdgeSource = sourceVertex.firstEdge;
+                        Edge<T, N> newEdgeForward = new Edge<>(destinationVertex, weight, currentEdgeSource); //edge to dest
+
+                        Edge<T, N> currentEdgeDest = destinationVertex.firstEdge;
+                        Edge<T, N> newEdgeBackward = new Edge<>(sourceVertex, weight, currentEdgeDest); //edge to source
+
+                        // add the new edge forward connected from the source vertex to destination vertex
+                        sourceVertex.firstEdge = newEdgeForward;
+
+                        //add the new edge backward connected from the destination vertex to sourceVertex
+                        destinationVertex.firstEdge = newEdgeBackward;
+
+                        sourceVertex.indeg++;
+                        sourceVertex.outdeg++;
+                        destinationVertex.indeg++;
+                        destinationVertex.outdeg++;
+                        return true;
+                    }
+
+                    destinationVertex = destinationVertex.nextVertex;
+                }
+            }
+
+            sourceVertex = sourceVertex.nextVertex;
+        }
+        return false;
+    }
+
+    public boolean removeEdge(T sourceInfo, T destinationInfo) {
+        if (head == null)
+            //if the graph is empty
+            return false;
+
+        Vertex<T, N> currentVertex = head;
+        while (currentVertex != null) {
+            if (currentVertex.vertexInfo.compareTo(sourceInfo) == 0) {
+                //traverse until it reaches the source vertex
+                Edge<T, N> currentEdge = currentVertex.firstEdge;
+                while (currentEdge != null) {
+                    if (currentEdge.toVertex.vertexInfo.compareTo(destinationInfo) == 0) {
+                        //traverse all edges from source until it points to dest
+                        currentEdge.toVertex = null; //delete by pointing the edge towards null instead of dest vertex
+                        return true;
+                    }
+                    currentEdge = currentEdge.nextEdge;
+                }
+
+                return false; //if destination vertex not found (or no connection between source and dest
+            }
+            currentVertex = currentVertex.nextVertex;
+        }
+        return false; // if source vertex not found
     }
 
     public N getEdgeWeight(T sourceInfo, T destinationInfo) {
