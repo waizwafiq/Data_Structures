@@ -7,13 +7,34 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
         private int indeg, outdeg; //the number of in-degrees and out-degrees
         private Vertex<T, N> nextVertex; //reference to the next vertex
         private Edge<T, N> firstEdge; //reference to the first edge node
+        private boolean visited;
 
         public Vertex() {
+            this.visited = false;
         }
 
         public Vertex(T vertexInfo, Vertex<T, N> nextVertex) {
             this.vertexInfo = vertexInfo;
             this.nextVertex = nextVertex;
+        }
+
+        public T visit() {
+            this.visited = true;
+            return vertexInfo;
+        }
+
+        public Vertex<T, N> visitVertex() {
+            this.visited = true;
+            return this;
+        }
+
+        public T unvisit() {
+            this.visited = false;
+            return vertexInfo;
+        }
+
+        public boolean isVisited() {
+            return visited;
         }
     }
 
@@ -45,6 +66,10 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public T getHead() {
         return head.vertexInfo;
+    }
+
+    public Vertex<T, N> getHeadVertex() {
+        return head;
     }
 
     public boolean hasVertex(T vertexInfo) {
@@ -317,6 +342,30 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
         return neighbours;
     }
 
+    public ArrayList<Vertex<T, N>> getNeighboursVertices(Vertex<T, N> vertex) {
+        if (!hasVertex(vertex.vertexInfo))
+            return null;
+
+        ArrayList<Vertex<T, N>> neighbours = new ArrayList<>();
+
+        Vertex<T, N> currentVertex = head;
+        while (currentVertex != null) {
+            if (currentVertex.vertexInfo.compareTo(vertex.vertexInfo) == 0) {
+                // traverse until given vertex
+                Edge<T, N> currentEdge = currentVertex.firstEdge;
+
+                while (currentEdge != null) {
+                    // go through all of the edges (outDegs) from the given vertex
+                    neighbours.add(currentEdge.toVertex);
+                    currentEdge = currentEdge.nextEdge;
+                }
+            }
+
+            currentVertex = currentVertex.nextVertex;
+        }
+        return neighbours;
+    }
+
     public void printEdges() {
         Vertex<T, N> currentVertex = head;
         while (currentVertex != null) {
@@ -332,6 +381,76 @@ public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
             System.out.println();
 
             currentVertex = currentVertex.nextVertex;
+        }
+    }
+
+    public void BreadthFirstSearch(Vertex<T, N> startVertex) {
+        if (startVertex == null || head == null)
+            return;
+
+        //Breadth-First Search uses FIFO protocol in the frontier.
+        Queue<Vertex<T, N>> frontier = new Queue<>();
+        frontier.enqueue(startVertex);
+
+        while (!frontier.isEmpty()) {
+            Vertex<T, N> currentVertex = frontier.dequeue();
+
+            //check if the vertex in the frontier has been visited
+            if (currentVertex.isVisited())
+                continue;
+
+            //if not, visit it
+            System.out.print(currentVertex.visit() + " ");
+
+            //get the current vertex's neighbours
+            ArrayList<Vertex<T, N>> neighbours = getNeighboursVertices(currentVertex);
+
+            //if there's no neighbours, skip
+            if (neighbours == null)
+                continue;
+
+            //enqueue all neighbours into the frontier
+            for (Vertex<T, N> v : neighbours)
+                if (!v.isVisited())
+                    frontier.enqueue(v);
+        }
+
+        //unvisit all vertices after traversal search (to avoid errors on other algorithms)
+        unvisitAll();
+    }
+
+    public void unvisitAll() {
+        Vertex<T, N> currentVertex = head;
+
+        while (currentVertex != null) {
+            currentVertex.unvisit();
+            currentVertex = currentVertex.nextVertex;
+        }
+    }
+
+    public void completeConnect() {
+        Vertex<T, N> v1 = head.visitVertex(); //starting from the head
+        //NOTE: visitVertex() is to avoid loop (vertex connects to itself)
+
+        while (v1 != null) {
+            Vertex<T, N> v2 = head; //starting from the head
+
+            while (v2 != null) {
+                if (v2.isVisited()) {
+                    //if the vertex has been visited, go to the next vertex
+                    v2 = v2.nextVertex;
+                    continue;
+                }
+                //add the edge here
+                //addUnweightedEdge() is not used here because of multiple edges connections
+                addEdge(v1.vertexInfo, v2.vertexInfo, null); //put weight here?
+                v2 = v2.nextVertex; //go to the next vertex
+            }
+            unvisitAll(); //reset the visited variable
+            if (v1.nextVertex == null) //to avoid NullPointerException
+                break;
+
+            v1 = v1.nextVertex.visitVertex(); //visit the next variable
         }
     }
 }
