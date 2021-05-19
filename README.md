@@ -1,5 +1,9 @@
 <h1>Data Structures in Java</h1>
-
+<p>
+  <img src="https://img.shields.io/github/stars/waizwafiq/Data_Structures?style=social">
+ 
+  <img src="https://img.shields.io/github/forks/waizwafiq/Data_Structures?style=social">
+</p>
 I am planning to implement data structures concepts using Java as much from scratch as possible.
 So far, the data structures that I have implemented are:
   * Dynamic Array
