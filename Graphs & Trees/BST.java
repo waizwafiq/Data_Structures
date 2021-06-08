@@ -47,7 +47,7 @@ public class BST<T extends Comparable<T>> {
         else if (e.compareTo(current.element) < 0)
             current.left = remove(current.left, e);
         else if (e.compareTo(current.element) > 0)
-            current.right = add(current.right, e);
+            current.right = remove(current.right, e);
         else {
             current = removeNode(current);
             found = true;
