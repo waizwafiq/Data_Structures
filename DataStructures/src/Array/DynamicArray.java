@@ -1,3 +1,4 @@
+package Array;
 import java.util.Random;
 
 public class DynamicArray<T> implements DynamicArrayInterface<T> {

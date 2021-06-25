@@ -1,4 +1,5 @@
-/**This is the interface for the Bag Data Structure.
+package Bag;
+/**This is the interface for the temp.Bag Data Structure.
  *<p>Imagine there's a bag (the structure), we can put anything inside the bag, which we call as the items (data).
  *The order of the items is insignificant and it is possible to have more than one similar item.
  *Therefore, the structure is not a set. However, I assumed that the bag is in a form of array.
@@ -72,9 +73,9 @@ public interface BagInterface <T>{
 
     /**The union of two bags.
      * Combines the items inside two bags:
-     * Bag A : {1,2,3,4}
-     * Bag B : {5,6,7}
-     * Bag A union Bag B : {1,2,3,4,5,6,7}
+     * temp.Bag A : {1,2,3,4}
+     * temp.Bag B : {5,6,7}
+     * temp.Bag A union temp.Bag B : {1,2,3,4,5,6,7}
      *
      * @param anotherBag Another bag.
      * @return The class of the united bags.
@@ -83,9 +84,9 @@ public interface BagInterface <T>{
 
     /**The intersection of two bags.
      * A new bag that has the common items of those two bags.
-     * Bag A: {1,2,3,4}
-     * Bag B: {2,4,5,6}
-     * Bag A intersection Bag B: {2,4}
+     * temp.Bag A: {1,2,3,4}
+     * temp.Bag B: {2,4,5,6}
+     * temp.Bag A intersection temp.Bag B: {2,4}
      *
      * @param anotherBag Another bag.
      * @return The class of the bag with common items.
@@ -94,9 +95,9 @@ public interface BagInterface <T>{
 
     /**The difference of two bags.
      * A new bag that has the differences of those two bags.
-     * Bag A: {1,2,3,4}
-     * Bag B: {3,4,5}
-     * Bag A difference Bag B: {1,2}
+     * temp.Bag A: {1,2,3,4}
+     * temp.Bag B: {3,4,5}
+     * temp.Bag A difference temp.Bag B: {1,2}
      *
      * @param anotherBag Another bag
      * @return The bag class with the differences of the two bags.
