@@ -1,5 +1,7 @@
 package Graph;
 
+import Queue.Queue;
+
 import java.util.ArrayList;
 
 public class UnweightedGraph<T extends Comparable<T>> {
@@ -182,9 +184,8 @@ public class UnweightedGraph<T extends Comparable<T>> {
                     if (destinationVertex.vertexInfo.compareTo(destinationInfo) == 0) {
                         // traverse until destination vertex
                         Edge<T> currentEdge = sourceVertex.firstEdge;
-                        Edge<T> newEdge = new Edge<>(destinationVertex, currentEdge);
 
-                        sourceVertex.firstEdge = newEdge; // add the new edge connected from the source vertex to
+                        sourceVertex.firstEdge = new Edge<>(destinationVertex, currentEdge); // add the new edge connected from the source vertex to
                         // destination vertex
                         sourceVertex.outdeg++;
                         destinationVertex.indeg++;
@@ -357,7 +358,7 @@ public class UnweightedGraph<T extends Comparable<T>> {
             return;
 
         //Breadth-First Search uses FIFO protocol in the frontier.
-        Queue<Vertex<T>> frontier = new Queue<>();
+        Queue<Vertex<T>> frontier = new Queue<Vertex<T>>();
         frontier.enqueue(startVertex);
 
         while (!frontier.isEmpty()) {

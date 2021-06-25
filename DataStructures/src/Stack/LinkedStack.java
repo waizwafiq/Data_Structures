@@ -39,7 +39,7 @@ public class LinkedStack<T> {
 
 
     public int getSize() {
-        return list.getSize();
+        return list.size();
     }
 
 

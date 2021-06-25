@@ -6,6 +6,8 @@ package Bag;
  * @author Waiz Wafiq
  */
 
+import LinkedList.CDLL;
+
 import java.util.Random;
 public class LinkedBag<T> implements BagInterface<T> {
 

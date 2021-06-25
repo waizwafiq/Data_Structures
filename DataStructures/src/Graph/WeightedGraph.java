@@ -5,28 +5,28 @@ import Queue.Queue;
 
 public class WeightedGraph<T extends Comparable<T>, N extends Comparable<N>> {
 
-    private class Vertex<T extends Comparable<T>, N extends Comparable<N>> {
-        private T vertexInfo;
+    private class Vertex<E extends Comparable<E>, W extends Comparable<W>> {
+        private E vertexInfo;
         private int indeg, outdeg; //the number of in-degrees and out-degrees
-        private Vertex<T, N> nextVertex; //reference to the next vertex
-        private Edge<T, N> firstEdge; //reference to the first edge node
+        private Vertex<E, W> nextVertex; //reference to the next vertex
+        private Edge<E, W> firstEdge; //reference to the first edge node
         private boolean visited;
 
         public Vertex() {
             this.visited = false;
         }
 
-        public Vertex(T vertexInfo, Vertex<T, N> nextVertex) {
+        public Vertex(E vertexInfo, Vertex<E, W> nextVertex) {
             this.vertexInfo = vertexInfo;
             this.nextVertex = nextVertex;
         }
 
-        public T visit() {
+        public E visit() {
             this.visited = true;
             return vertexInfo;
         }
 
-        public Vertex<T, N> visitVertex() {
+        public Vertex<E, W> visitVertex() {
             this.visited = true;
             return this;
         }

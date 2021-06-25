@@ -56,13 +56,13 @@ class TowerOfHanoi {
             String d1 = " ", d2 = " ", d3 = " ";
             try {
                 d1 = String.valueOf(tower[0].get(i));
-            } catch (Exception e) { }
+            } catch (Exception ignored) { }
             try {
                 d2 = String.valueOf(tower[1].get(i));
-            } catch (Exception e) { }
+            } catch (Exception ignored) { }
             try {
                 d3 = String.valueOf(tower[2].get(i));
-            } catch (Exception e) { }
+            } catch (Exception ignored) { }
             System.out.println(" " + d1 + " | " + d2 + " | " + d3);
         }
         System.out.println("\n");

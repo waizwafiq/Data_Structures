@@ -35,7 +35,7 @@ public class LinkedQueue<E>{
     }
 
     public int getSize() {
-        return list.getSize();
+        return list.size();
     }
 
     public boolean contains(E e) {
@@ -43,18 +43,18 @@ public class LinkedQueue<E>{
     }
 
     public boolean isEmpty() {
-        return list.getSize() == 0;
+        return list.size() == 0;
     }
 
     public String toString() {
-        String out = "| ";
+        StringBuilder out = new StringBuilder("| ");
         for (int i = getSize() - 1; i >= 0; i--)
-            out += list.get(i) + " | ";
-        return out;
+            out.append(list.get(i)).append(" | ");
+        return out.toString();
     }
 
     public void display() {
-        System.out.println(toString());
+        System.out.println(this);
     }
 
     public void reverse() {
