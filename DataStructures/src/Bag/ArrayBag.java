@@ -1,6 +1,7 @@
+package Bag;
 /**
  *  The {@code ArrayBag} class represents a bag (or multiset) of 
- *  generic items. Since the bag uses the Array concept, the size is fixed.
+ *  generic items. Since the bag uses the temp.Array concept, the size is fixed.
  *
  *  @author Waiz Wafiq
  */
