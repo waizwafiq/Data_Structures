@@ -1,5 +1,7 @@
 package Queue;
-public class LinkedQueue<E> implements QueueInterface<E> {
+
+import LinkedList.LL;
+public class LinkedQueue<E>{
 
     private LL<E> list;
 
@@ -14,12 +16,10 @@ public class LinkedQueue<E> implements QueueInterface<E> {
             enqueue(elem);
     }
 
-    @Override
     public void enqueue(E e) {
         list.add(e);
     }
 
-    @Override
     public E dequeue() {
         E dequeued = list.getFirst();
         list.removeFirst();
@@ -34,7 +34,6 @@ public class LinkedQueue<E> implements QueueInterface<E> {
         return list.getFirst();
     }
 
-    @Override
     public int getSize() {
         return list.getSize();
     }
@@ -47,7 +46,6 @@ public class LinkedQueue<E> implements QueueInterface<E> {
         return list.getSize() == 0;
     }
 
-    @Override
     public String toString() {
         String out = "| ";
         for (int i = getSize() - 1; i >= 0; i--)

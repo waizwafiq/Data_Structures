@@ -1,6 +1,6 @@
 package Queue;
 
-public class ArrayQueue<E> implements QueueInterface<E> {
+public class ArrayQueue<E> {
 
     private E[] array;
     private int queueSize = 25;
@@ -15,7 +15,6 @@ public class ArrayQueue<E> implements QueueInterface<E> {
         this.queueSize = queueSize;
     }
 
-    @Override
     public void enqueue(E e) {
         if (currentSize >= queueSize) {
             System.out.println("temp.Queue is full!");
@@ -24,13 +23,11 @@ public class ArrayQueue<E> implements QueueInterface<E> {
         }
     }
 
-    @Override
     public E dequeue() {
         if (!isEmpty()) {
             E[] temp = (E[]) new Object[queueSize];
 
-            for (int i = 1; i < queueSize; i++)
-                temp[i - 1] = array[i];
+            if (queueSize - 1 >= 0) System.arraycopy(array, 1, temp, 0, queueSize - 1);
 
             currentSize--;
 
@@ -51,7 +48,6 @@ public class ArrayQueue<E> implements QueueInterface<E> {
         return array[0];
     }
 
-    @Override
     public int getSize() {
         return currentSize;
     }
@@ -62,17 +58,14 @@ public class ArrayQueue<E> implements QueueInterface<E> {
                 if (array[i].equals(e))
                     return true;
             }
-            return false;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public boolean isEmpty() {
         return currentSize == 0;
     }
 
-    @Override
     public String toString() {
         String out = "| ";
         for (int i = currentSize - 1; i >= 0; i--)
@@ -84,7 +77,6 @@ public class ArrayQueue<E> implements QueueInterface<E> {
         System.out.println(toString());
     }
 
-    @Override
     public void reverse() {
         E[] temp = (E[]) new Object[currentSize];
 
