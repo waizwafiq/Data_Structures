@@ -1,3 +1,4 @@
+package Bag;
 /**
  * The {@code LinkedBag} class represents a bag (or multiset) of generic items.
  * It supports insertion and iterating over the items in arbitrary order.
