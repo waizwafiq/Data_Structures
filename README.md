@@ -1,4 +1,4 @@
-<h1>Data Structures in Java</h1>
+<h1>src in Java</h1>
 <p>
   <img src="https://img.shields.io/github/stars/waizwafiq/Data_Structures?style=social">
  
