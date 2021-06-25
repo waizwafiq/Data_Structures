@@ -1,5 +1,6 @@
 package LinkedList;
-public class LL<E> implements LinkedListInterface<E> {
+
+public class LL<E> {
 
     private class Node<T> {
         private Node<T> next;
@@ -14,14 +15,15 @@ public class LL<E> implements LinkedListInterface<E> {
     private Node<E> head, tail;
     private int size;
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
-    public LL() {}
-    
+    public LL() {
+    }
+
     public LL(E[] arr) {
-        for(E elem: arr)
+        for (E elem : arr)
             add(elem);
     }
 
@@ -78,9 +80,9 @@ public class LL<E> implements LinkedListInterface<E> {
 
     public void addAllFirst(LL<E> list2) {
         /*
-         * l1: 1 -> 2 -> 3 
+         * l1: 1 -> 2 -> 3
          * l2: 4 -> 5 -> 6
-         * 
+         *
          * l1.addAllFirst(l2) : 4 -> 5 -> 6 -> 1 -> 2 -> 3
          */
 
@@ -188,7 +190,7 @@ public class LL<E> implements LinkedListInterface<E> {
     }
 
     public E getMiddle() {
-        return get((int) size / 2);
+        return get(size / 2);
     }
 
     public E getLast() {
@@ -279,7 +281,7 @@ public class LL<E> implements LinkedListInterface<E> {
 
         Node<E> next = head;
         tail = head;
-        Node<E> previous = null, current = null;
+        Node<E> previous = null, current;
 
         while (next != null) {
             current = next;

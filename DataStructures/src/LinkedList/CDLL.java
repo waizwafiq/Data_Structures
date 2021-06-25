@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class CDLL<E> implements LinkedListInterface<E> {
+public class CDLL<E> {
 
     private class Node<T> {
         Node<T> next, previous;
@@ -20,7 +20,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         return size;
     }
 
-    @Override
+
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
 
@@ -42,7 +42,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         size++;
     }
 
-    @Override
+
     public void addLast(E e) {
         Node<E> newNode = new Node<>(e);
 
@@ -62,7 +62,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         size++;
     }
 
-    @Override
+
     public void add(int index, E e) {
         if (index < 0)
             throw new IndexOutOfBoundsException("Negative index is not possible!");
@@ -103,7 +103,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+
     public void add(E e) {
         if (size == 0)
             addFirst(e);
@@ -111,7 +111,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
             addLast(e);
     }
 
-    @Override
+
     public E removeFirst() {
         if (size == 0)
             return null;
@@ -130,7 +130,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+
     public E removeLast() {
         if (size == 0)
             return null;
@@ -152,7 +152,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+
     public E remove(int index) {
         if (index < 0)
             throw new IndexOutOfBoundsException("Negative index is not possible!");
@@ -190,13 +190,13 @@ public class CDLL<E> implements LinkedListInterface<E> {
         return null;
     }
 
-    @Override
+
     public boolean contains(E e) {
         if (size != 0) {
             Node<E> current = head;
 
             if (tail.element.equals(e)) // the loop will skip when current node reaches the tail node. (need improvement
-                                        // here if possible)
+                // here if possible)
                 return true;
             while (current != tail) {
                 if (current.element.equals(e))
@@ -208,7 +208,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         return false;
     }
 
-    @Override
+
     public E get(int index) {
         if (size == 0 || index < 0 || index >= size) {
             return null;
@@ -231,22 +231,22 @@ public class CDLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+
     public E getFirst() {
         return head.element;
     }
 
-    @Override
+
     public E getMiddle() {
         return get(size / 2);
     }
 
-    @Override
+
     public E getLast() {
         return tail.element;
     }
 
-    @Override
+
     public int indexOf(E e) {
         Node<E> current = head;
 
@@ -260,7 +260,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         return -1;
     }
 
-    @Override
+
     public int lastIndexOf(E e) {
         Node<E> current = tail; // starting from tail
 
@@ -274,7 +274,7 @@ public class CDLL<E> implements LinkedListInterface<E> {
         return -1;
     }
 
-    @Override
+
     public E set(int index, E e) {
         if (index < 0 || index >= size)
             return null;
@@ -303,19 +303,19 @@ public class CDLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+
     public void clear() {
         head = tail = null;
         size = 0;
     }
 
-    @Override
+
     public void print() {
-        if(head == null){
+        if (head == null) {
             System.out.println("List is empty!");
             return;
         }
-        
+
         Node<E> current = head;
 
         System.out.print("<-> ");
@@ -331,9 +331,9 @@ public class CDLL<E> implements LinkedListInterface<E> {
         System.out.println("Element before head: " + head.previous.element);*/
     }
 
-    @Override
+
     public void reverse() {
-        Node<E> previous = null;
+        Node<E> previous;
         Node<E> current = head;
 
         do {

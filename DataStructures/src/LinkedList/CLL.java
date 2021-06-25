@@ -1,5 +1,6 @@
 package LinkedList;
-public class CLL<E> implements LinkedListInterface<E> {
+
+public class CLL<E> {
 
     private class Node<T> {
         private Node<T> next;
@@ -20,8 +21,8 @@ public class CLL<E> implements LinkedListInterface<E> {
     public int getSize() {
         return size;
     }
+
     
-    @Override
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
 
@@ -36,7 +37,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         size++;
     }
 
-    @Override
+    
     public void addLast(E e) {
         Node<E> newNode = new Node<>(e);
 
@@ -51,7 +52,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         size++;
     }
 
-    @Override
+    
     public void add(int index, E e) {
         if (index < 0)
             throw new IndexOutOfBoundsException("Negative index is not possible!");
@@ -72,7 +73,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+    
     public void add(E e) {
         if (size == 0)
             addFirst(e);
@@ -80,7 +81,7 @@ public class CLL<E> implements LinkedListInterface<E> {
             addLast(e);
     }
 
-    @Override
+    
     public E removeFirst() {
         if (size == 0)
             return null;
@@ -95,7 +96,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+    
     public E removeLast() {
         if (size == 0)
             return null;
@@ -119,7 +120,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+    
     public E remove(int index) {
         if (index < 0 || index >= size)
             return null;
@@ -141,11 +142,11 @@ public class CLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+    
     public boolean contains(E e) {
         if (size != 0) {
             Node<E> current = head;
-            
+
             if (tail.element.equals(e)) //the loop will skip when current node reaches the tail node. (need improvement here if possible)
                 return true;
             while (current != tail) {
@@ -158,7 +159,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         return false;
     }
 
-    @Override
+    
     public E get(int index) {
         if (index < 0 || index >= size)
             return null;
@@ -172,22 +173,22 @@ public class CLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+    
     public E getFirst() {
         return head.element;
     }
 
-    @Override
+    
     public E getMiddle() {
         return get(size / 2);
     }
 
-    @Override
+    
     public E getLast() {
         return tail.element;
     }
 
-    @Override
+    
     public int indexOf(E e) {
         Node<E> current = head;
 
@@ -201,7 +202,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         return -1;
     }
 
-    @Override
+    
     public int lastIndexOf(E e) {
         /*
          * note: I'm still looking for a better to do this method. Singly linked list
@@ -221,7 +222,7 @@ public class CLL<E> implements LinkedListInterface<E> {
         return idx;
     }
 
-    @Override
+    
     public E set(int index, E e) {
         if (index < 0 || index >= size)
             return null;
@@ -238,19 +239,19 @@ public class CLL<E> implements LinkedListInterface<E> {
         }
     }
 
-    @Override
+    
     public void clear() {
         head = tail = null;
         size = 0;
     }
 
-    @Override
+    
     public void print() {
-        if(head == null){
+        if (head == null) {
             System.out.println("List is empty!");
             return;
         }
-        
+
         Node<E> current = head;
 
         System.out.print("-> ");
@@ -263,11 +264,11 @@ public class CLL<E> implements LinkedListInterface<E> {
         System.out.println("Element after tail: " + tail.next.element);*/
     }
 
-    @Override
+    
     public void reverse() {
         Node<E> next = head;
         tail = head;
-        Node<E> previous = null, current = null;
+        Node<E> previous = null, current;
 
         do {
             current = next;

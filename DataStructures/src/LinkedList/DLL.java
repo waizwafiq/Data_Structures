@@ -1,5 +1,6 @@
 package LinkedList;
-public class DLL<E> implements LinkedListInterface<E> {
+
+public class DLL<E> {
 
     private class Node<T> {
         Node<T> next, previous;
@@ -21,7 +22,7 @@ public class DLL<E> implements LinkedListInterface<E> {
 
     public DLL() {
     }
-    
+
     public DLL(E[] arr) {
         for (E elem : arr)
             add(elem);
@@ -83,7 +84,7 @@ public class DLL<E> implements LinkedListInterface<E> {
             // Add element at the right part of the list (starting from the tail)
             Node<E> current = tail;
 
-            for (int i = 0; i < size - index; i++) 
+            for (int i = 0; i < size - index; i++)
                 current = current.previous;
 
             Node<E> temp = current.next;
@@ -94,40 +95,40 @@ public class DLL<E> implements LinkedListInterface<E> {
             size++;
         }
     }
-    
+
     public void add(E e) {
         if (size == 0)
             addFirst(e);
         else
             addLast(e);
     }
-    
+
     public void addAllFirst(DLL<E> list2) {
         /*
-         * l1: 1 <-> 2 <-> 3 
+         * l1: 1 <-> 2 <-> 3
          * l2: 4 <-> 5 <-> 6
-         * 
+         *
          * l1.addAllFirst(l2) : 4 <-> 5 <-> 6 <-> 1 <-> 2 <-> 3
          */
 
-         list2.tail.next = this.head;
-         this.head.previous = list2.tail;
+        list2.tail.next = this.head;
+        this.head.previous = list2.tail;
 
-         this.head = list2.head;
+        this.head = list2.head;
     }
 
     public void addAllLast(DLL<E> list2) {
         /*
-         * l1: 1 <-> 2 <-> 3 
+         * l1: 1 <-> 2 <-> 3
          * l2: 4 <-> 5 <-> 6
-         * 
+         *
          * l1.addAllLast(l2) : 1 <-> 2 <-> 3 <-> 4 <-> 5 <-> 6
          */
 
-         this.tail.next = list2.head;
-         list2.head.previous = this.tail;
-         
-         this.tail = list2.tail;
+        this.tail.next = list2.head;
+        list2.head.previous = this.tail;
+
+        this.tail = list2.tail;
     }
 
     public E removeFirst() {
@@ -242,13 +243,13 @@ public class DLL<E> implements LinkedListInterface<E> {
     }
 
     public E getMiddle() {
-        return get(size/2);
+        return get(size / 2);
     }
 
     public E getLast() {
         return tail.element;
     }
-    
+
     public int indexOf(E e) {
         Node<E> current = head;
 
@@ -274,7 +275,7 @@ public class DLL<E> implements LinkedListInterface<E> {
 
         return -1;
     }
-    
+
     public E set(int index, E e) {
         if (index < 0 || index >= size)
             return null;
@@ -302,18 +303,18 @@ public class DLL<E> implements LinkedListInterface<E> {
             return temp;
         }
     }
-    
-    public void clear(){
+
+    public void clear() {
         head = tail = null;
         size = 0;
     }
 
     public void print() {
-        if(head == null){
+        if (head == null) {
             System.out.println("List is empty!");
             return;
         }
-        
+
         Node<E> current = head;
         while (current.next != null) {
             System.out.print(current.element + " <-> ");
@@ -321,29 +322,29 @@ public class DLL<E> implements LinkedListInterface<E> {
         }
         System.out.println(tail.element);
     }
-    
+
     public void reverse() {
         /*Another idea to optimize time complexity:
-        * ->Swap head and tail and traverse forward and backward respectively
-        * ->Swap the previous and next nodes of each node
-        * ->If size is odd, the middle node stays in the same position, 
-        *   but the prev and next nodes are swapped.
-        * Illustration:
-        *     a <-> b <-> c <-> d <-> e  Start!
-        *     e <-> b <-> c <-> d <-> a
-        *     e <-> d <-> c <-> b <-> a  Done!
-        * 
-        *     Time complexity: f(n) = n/2
-        *     Worst case     : O(n)?
-        */
+         * ->Swap head and tail and traverse forward and backward respectively
+         * ->Swap the previous and next nodes of each node
+         * ->If size is odd, the middle node stays in the same position,
+         *   but the prev and next nodes are swapped.
+         * Illustration:
+         *     a <-> b <-> c <-> d <-> e  Start!
+         *     e <-> b <-> c <-> d <-> a
+         *     e <-> d <-> c <-> b <-> a  Done!
+         *
+         *     Time complexity: f(n) = n/2
+         *     Worst case     : O(n)?
+         */
 
-        if(head != null){
+        if (head != null) {
             Node<E> current1 = head, current2 = tail;
-            Node<E> temp = null;
+            Node<E> temp;
 
             tail = current1;
             head = current2;
-            for(int i=0; i<getSize()/2; i++){
+            for (int i = 0; i < getSize() / 2; i++) {
                 //swap next and prev nodes for current1
                 temp = current1.previous;
                 current1.previous = current1.next;
@@ -357,10 +358,9 @@ public class DLL<E> implements LinkedListInterface<E> {
                 current1 = current1.previous;
                 current2 = current2.next;
             }
-            if(getSize()%2 != 0){
-                Node<E> middle = current1;
-                middle.next = current2.previous;
-                middle.previous = current1.next;
+            if (getSize() % 2 != 0) {
+                current1.next = current2.previous;
+                current1.previous = current1.next;
             }
         }
 
